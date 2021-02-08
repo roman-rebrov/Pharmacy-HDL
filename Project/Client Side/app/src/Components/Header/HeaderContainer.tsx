@@ -14,12 +14,14 @@ const HeaderContainer : React.FC = () => {
         type: ADD_REMOVE_PRODUCT_IN_CART, 
         payload: id
     });
+
     const mapStateToProps = (state : any) : any => {
         // console.log(state.State.Products.list[1].cost.new);
+        
         return {
             // added : [...state.addedToCart],
-            added : [...state.addedToCartReducer.addedId],
-            addedToCart : [...state.addedToCartReducer.added],
+            added : [...state.productsBlock.addedToCart.addedId],
+            addedToCart : [...state.productsBlock.addedToCart.added],
             // products : state.State.Products.list,
         }
     };

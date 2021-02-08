@@ -3,10 +3,20 @@ import '../../SASS/ProductList.sass'
 import ProdCardContainer from '../ProductCards/ProdCardsContainer'
 // import { State } from '../../Types/types'
 // import { Provider } from 'react-redux'
+import { getProducts } from '../../API/products'
 
 const ProductList : React.FC<any> = ( props ) => {
     // console.log(props);
+    const  io = async() => {
+        const ttt = await getProducts()
+        
+        await props.dispatch({type: "GET_PRODUCTS", payload: {...ttt}})
+    };
     
+    if(props.Products.list.length === 0){
+        // console.log(props.dispatch);
+        io()
+    }
     return (
         <div>
             Our Products :
@@ -14,7 +24,7 @@ const ProductList : React.FC<any> = ( props ) => {
                 {
                     props.Products.list.map((item : any,  i : number)  :  JSX.Element => { 
                         return (
-                            <ProdCardContainer  
+                            <ProdCardContainer    
                                 props={item}
                                 dispatch= {props.dispatch}
                                 added={props.added}

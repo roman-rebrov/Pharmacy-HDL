@@ -16,12 +16,12 @@ const PayComponentContainer : React.FC = ()  => {
     });
     const mapStateToProps = (state : any) => { 
         let total : number = 0;
-        state.addedToCartReducer.added.forEach((element : any) => { 
+        state.productsBlock.addedToCart.added.forEach((element : any) => { 
             // console.log(element.cost);
             total += element.cost;
         });
         return({
-            addedToCart : [...state.addedToCartReducer.added],
+            addedToCart : [...state.productsBlock.addedToCart.added],
  
         })
     };

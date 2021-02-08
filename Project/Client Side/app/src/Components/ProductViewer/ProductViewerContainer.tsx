@@ -12,9 +12,10 @@ const ProductViewerContainer = () => {
     })
 
     const mapStateToProps = (state : any) => {
+        
         return({
-        selectedObject : {...state.selectedForViewing},
-        addedId :[ ...state.addedToCartReducer.addedId],
+        selectedObject : {...state.productsBlock.viewPage},
+        addedId :[ ...state.productsBlock.addedToCart.addedId],
         // addedButton : state.addedToCartReducer.addedId.indexOf(state.selectedForViewing.id) === -1 ? 'Add' : 'Remove'
     })};
     
@@ -27,7 +28,7 @@ const ProductViewerContainer = () => {
         })
 
     };
-    const ProductViewerWrap = connect(mapStateToProps, mapDispatchToProps)(ProductViewer)
+    const ProductViewerWrap = connect(mapStateToProps, mapDispatchToProps)(ProductViewer);
     return( <ProductViewerWrap /> );
 };
 

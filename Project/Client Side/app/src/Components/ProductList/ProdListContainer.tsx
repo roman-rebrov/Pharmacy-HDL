@@ -10,9 +10,9 @@ const   ProdListContainer : React.FC<{}> = () : any => {
         // console.log(store.State.dispatch);
         
         return {
-            ...store.State,
+            ...store.productsBlock,
             // added : store.addedToCart,
-            added :[ ...store.addedToCartReducer.addedId]
+            added : [...store.productsBlock.addedToCart.addedId],
         }
     };
     

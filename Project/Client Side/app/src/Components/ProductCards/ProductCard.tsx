@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 // import { render } from '@testing-library/react'
 import PhotoViewer from '../Modals/PhotoViewer'
 
-import { getProducts } from '../../API/products'
+// import { getProducts } from '../../API/products'
  
 
 
@@ -43,8 +43,9 @@ const ProductCard : React.FC<
     };
     const openModal = async() => {
         setModal(true);
-        const ttt = await getProducts()
-        await console.log(ttt);
+
+        // const ttt = await getProducts()
+        // await console.log(ttt.list  );
         
     };
     const close = () => {
@@ -52,6 +53,8 @@ const ProductCard : React.FC<
     };
     const Add_Remove_Product = (event : MouseEvent) => {
         event.preventDefault()
+        // console.log(products.id);
+        
         addedProductFunction(products.id)
         button = button === 'Add' ? 'Remove' : 'Add'
         setButton(button)

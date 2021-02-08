@@ -31,7 +31,10 @@ const ProdCardsContainer : React.FC<{
         payload
     })
     const addedProductFunction = (id : string) : void => {
-        const action = Add_Remove_Action_Creater(ADD_REMOVE_PRODUCT_IN_CART,id)
+        const action = Add_Remove_Action_Creater(ADD_REMOVE_PRODUCT_IN_CART, id)
+        // console.log(action);
+        // console.log(dispatch);
+        
         dispatch(action)
     }
     const addedButton : string = added.indexOf(props.id) === -1 ? 'Add' : 'Remove'

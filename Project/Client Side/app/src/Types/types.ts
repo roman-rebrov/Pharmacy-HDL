@@ -15,6 +15,10 @@ export type ProdObj = {
 };
 export type ProductList =  {list : ProdObj[]}
 export type State = {
-    // Added : string[],
-    Products : ProductList
+    Products : ProductList,
+    addedToCart : {
+        addedId : string[],
+        added : string[]
+    },
+    viewPage : {},
 };

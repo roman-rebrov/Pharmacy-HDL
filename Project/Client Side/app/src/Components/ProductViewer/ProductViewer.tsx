@@ -2,10 +2,9 @@ import React, { useState } from 'react'
 import PhotoViewer from '../Modals/PhotoViewer';
 
 const ProductViewer = (props : any) => {
-    console.log(props); 
-    if (!props.selectedObject.id) {
-        window.location.href = "http://localhost:3000/";
-    }
+    // if (!props.selectedObject.id) {
+    //     window.location.href = "http://localhost:3000/";
+    // }
     const { id, name, discribes, photo, cost } = props.selectedObject;
     let buttonAdded = props.addedId.indexOf(id) === -1 ? 'Add' : 'Remove';
 
@@ -31,7 +30,7 @@ const ProductViewer = (props : any) => {
             <div className=""
                     onClick={() => {openModal()}}
             >
-                <img src={photo[0]} alt=""/>
+                <img src={photo[0]} alt=""/>    
             </div>
             <div className="">{name}</div>
             <div className="">{discribes}</div>

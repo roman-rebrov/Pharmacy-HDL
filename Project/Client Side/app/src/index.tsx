@@ -11,6 +11,7 @@ interface RenderInt{
   render : (props : {}) => void
 }
 let state = Store.getState() as {State : State}
+  console.log(state);
   
   ReactDOM.render(
     <React.StrictMode>

@@ -4,7 +4,7 @@ import  axios from 'axios'
 
 export const getProducts = async() => {
 
-     return await axios.get('https://jsonplaceholder.typicode.com/todos/1')
+     return await axios.get('http://localhost:3219')
                 .then(response => response.data )
                 .catch(err => console.log(err))
 }
