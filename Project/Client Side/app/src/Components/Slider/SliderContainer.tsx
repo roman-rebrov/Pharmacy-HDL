@@ -8,12 +8,14 @@ const SliderContainer = () => {
 
     const mapStateToProps = (state : any) => {
         return({
-
+            slides : [...state.slider]
         })
     };
     const mapDispatchToProps = (dispatch : any) => {
         return({
-
+                getSlides: (slides : any) => {
+                    dispatch({type : "GET_SLIDE_LIST", payload: [...slides.list]})
+                }
         })
     };
 

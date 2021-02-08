@@ -8,7 +8,7 @@ import { getProducts } from '../../API/products'
 const ProductList : React.FC<any> = ( props ) => {
     // console.log(props);
     const  io = async() => {
-        const ttt = await getProducts()
+        const ttt = await getProducts("/")
         
         await props.dispatch({type: "GET_PRODUCTS", payload: {...ttt}})
     };

@@ -1,10 +1,15 @@
 import  axios from 'axios'
 
-// const axios = require('axios');
 
-export const getProducts = async() => {
+export const getProducts = async(props : string) => {
 
-     return await axios.get('http://localhost:3219')
+     return await axios.get('http://localhost:3219' + props)
+                .then(response => response.data )
+                .catch(err => console.log(err))
+}
+export const getSlidesList = async(props : string) => {
+
+     return await axios.get('http://localhost:3219' + props)
                 .then(response => response.data )
                 .catch(err => console.log(err))
 }

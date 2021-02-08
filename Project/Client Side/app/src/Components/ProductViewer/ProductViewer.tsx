@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import PhotoViewer from '../Modals/PhotoViewer';
 
 const ProductViewer = (props : any) => {
-    // if (!props.selectedObject.id) {
-    //     window.location.href = "http://localhost:3000/";
-    // }
+    if (!props.selectedObject.id) {
+        window.location.href = "http://localhost:3000/";
+    }
     const { id, name, discribes, photo, cost } = props.selectedObject;
     let buttonAdded = props.addedId.indexOf(id) === -1 ? 'Add' : 'Remove';
 

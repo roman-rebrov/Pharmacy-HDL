@@ -14,42 +14,13 @@ app.use(cors({
     origin : 'http://127.0.0.1:5500'
 }))
 
-let  productList = require('./src/products')
+let  productList = require('./src/products');
+let  slides = require('./src/slides');
 
 //////////////////////////////////////////////////////////////////////////////////////////      
 // ==================== DB ========================
 
-let UserBase = [      
-    {
-        "User" : {
-            "id" : "154788321",
-            "name" : "Alex",
-            "nickname" : "Rolf",
-            "password" : "123789",
-            "e-mail" : "",
-            "" : "",
-            "myBooking" : [],
-            "myComments" : [],
-            "assasment" : [],
-            "accesses" : {
-                "userSession" : {
-                    "sessionKey" : "j90cKfL78Hd8hR77t5",
-                    "sessionDate" : "20.07.2020"
-                }
-            },
-            "myNotifications" : [],
-            "myChat" : {},
-            "myFavoritePosts" : [],
-            "myFavoriteProduct" : [],
-            "mCart" : [{}],
-            "history" : { 
-                "myPurchases" : [
-                    {"idProduct" : "789877787"}
-                ]
-            }
-        }
-    }
-]
+
 const products = {    
   list: [
       {
@@ -64,12 +35,6 @@ const products = {
               old: '350',
               new: '299'
           },
-          get discount() {
-              let count = +this.cost.old - +this.cost.new,
-              proc = +this.cost.old / 100,
-              res = Math.floor(count / proc)
-              return res 
-          },
           rating: {
               votes: ['5', '5', '5'],
           },
@@ -78,9 +43,6 @@ const products = {
       },
 
   ]
-}
-let mainData = {
-    d: [1,5,7,100]
 }
 // /////////////////////////////////////////////////////////////////////////////////////
 function checkUser(){
@@ -91,7 +53,6 @@ function checkUser(){
             usersBase.push(true)
         }
     }
-
     return usersBase
 }
 
@@ -108,6 +69,18 @@ app.post("/test", cors(), (req, res) => {
     })
 })
 // ------------------------------------------------
+app.get("/", cors(), (req, res) => {
+    setTimeout(() => {
+        res.send(productList );
+    }, 2000)
+});
+
+app.get("/slides", cors(), (req, res) => {
+    setTimeout(() => {
+        res.send(slides );
+    }, 2000)
+});
+// ------------------------------------------------
 app.get("/newUser", cors(),  (req,res) => {
     res.send([checkUser()])
 })
@@ -120,11 +93,6 @@ app.get("/checkUser",cors(),  (req, res) => {
     res.send(products)
 } )
 
-app.get("/", cors(), (req, res) => {
-    setTimeout(() => {
-        res.send(productList );
-    }, 2000)
-});
 app.get("/persons", cors(), (req, res) => {
   console.log("persons");
   res.send( products);

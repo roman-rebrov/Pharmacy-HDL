@@ -5,7 +5,7 @@ const addedToCart = {
     addedId : [],
     added : []
 }
-// const viewPage : {} = {};
+
 
 let InitialState : State = {
     Products,
