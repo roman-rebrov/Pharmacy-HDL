@@ -1,17 +1,28 @@
 import  axios from 'axios'
 
 
-export const getProducts = async(props : string) => {
+const instance = axios.create({
+     baseURL : "http://localhost:3219",
+});
 
-     return await axios.get('http://localhost:3219' + props)
-                .then(response => response.data )
-                .catch(err => console.log(err))
+export const getProducts = async(props : string) => {
+     try{
+          return await instance.get( props)
+          .then(response => response.data )
+          .catch(err => console.log(err))
+     } catch (err) {
+          console.log(err);
+     }
 }
 export const getSlidesList = async(props : string) => {
 
-     return await axios.get('http://localhost:3219' + props)
-                .then(response => response.data )
-                .catch(err => console.log(err))
+     try{
+          return await instance.get(props)
+                    .then(response => response.data )
+                    .catch(err => console.log(err))
+          } catch(err){
+               console.log(err);
+          }
 }
 
 // export const getProducts = async() => {

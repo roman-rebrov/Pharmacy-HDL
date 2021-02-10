@@ -3,10 +3,8 @@ import { getSlidesList } from '../../API/products'
 
 
 const Slider = (props : any) => {
-    console.log(props);
     const getSl = async() => {
         let slides = await getSlidesList("/slides");
-        await console.log(slides);
         
         await props.getSlides(slides);
     }
