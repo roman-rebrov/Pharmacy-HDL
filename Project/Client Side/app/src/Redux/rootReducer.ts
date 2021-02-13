@@ -8,9 +8,11 @@ import selectedForViewing from './selectedForViewing'
 
 export const rootReducer : {} = combineReducers({
     productsBlock : ProductList,
-    slider
-    // addedToCartReducer, 
-    // selectedForViewing,
+    slider,
 });
+
+
+// addedToCartReducer, 
+// selectedForViewing,
 // addedToCart,
 // selectedReducer,

@@ -1,5 +1,5 @@
 import React from 'react'
-import { getSlidesList } from '../../API/products'
+import { getSlidesList } from '../../API/api'
 
 
 const Slider = (props : any) => {

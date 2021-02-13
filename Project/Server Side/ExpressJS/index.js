@@ -1,9 +1,6 @@
-// import Products from './src/products'
-
 const express = require("express");
 // const bodyParser = require("body-parser")
 const DB = require("./db")
-// import './db.js'
 const cors = require("cors");
 const app = express();
 const port = 3219;
@@ -13,14 +10,16 @@ app.use(express.json({ limit : '1mb' }))
 app.use(cors({
     origin : 'http://127.0.0.1:5500'
 }))
+app.listen(port, () => console.log("http://localhost:" + port));    
+
 
 let  productList = require('./src/products');
 let  slides = require('./src/slides');
 
-//////////////////////////////////////////////////////////////////////////////////////////      
+///////////////////////////////////////////////////////////////////////////////////////////////////      
 // ==================== DB ========================
 
-
+/**
 const products = {    
   list: [
       {
@@ -44,6 +43,7 @@ const products = {
 
   ]
 }
+*/
 // /////////////////////////////////////////////////////////////////////////////////////
 function checkUser(){
     let usersBase = []
@@ -59,7 +59,6 @@ function checkUser(){
 app.post("/test", cors(), (req, res) => {
     const data = req.body
     console.log(req.body.p);
-    console.log('Hiiii');
     res.json({
         users : UserBase,
         main : checkUser(),
@@ -97,6 +96,40 @@ app.get("/persons", cors(), (req, res) => {
   console.log("persons");
   res.send( products);
 }); 
+// ===================================
+app.get("/home/recommented", cors(),(req, res) => {
+    res.send(' ');
+})
+app.get("/home/populars", cors(),(req, res) => {
+    try{
+        res.send(' ');
+    } catch(e) {
+        
+    }
+})
+// ======================================
+let prodArray = [];
+function productsFabrice(num) {
+    let arr = [];
+    for (let i = 0; i < num; i++){
+        arr.push({
+            id: "A20" + i,
+            brande: "Koktail",
+            name: "kflkfg sdf",
+            photo : [
+                'https://media.apteka366.ru/sys_master/product/h91/h2b/8817132765214.jpg',
+            ],
+            cost : {
+                old : '',
+                new : '1' + i
+            },
+            discribes : 'Подгузники-трусики Libero Up&Go (7-11кг.), 18 шт.'
+        },
+        );
+    };
+    return arr;
+};
+prodArray = productsFabrice(10)
+// productList.list.push(...prodArray)
 
-app.listen(port, () => console.log("http://localhost:" + port));    
-  
+// ======================================

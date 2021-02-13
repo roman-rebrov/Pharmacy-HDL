@@ -17,7 +17,15 @@ module.exports= {
             categories : {
                 main : '',
                 keywords : [''],
-            }
+            },
+            rating: {
+                votes: {
+                    //  : '5',
+                    // '5',
+                    // '5'
+                },
+            },
+
         },
         {
             id : 'A02',
@@ -74,5 +82,7 @@ module.exports= {
             },
             discribes : 'Подгузники-трусики Libero Up&Go (7-11кг.), 18 шт.'
         },
+
     ]
 }
+

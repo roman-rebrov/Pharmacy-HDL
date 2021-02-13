@@ -3,7 +3,7 @@ import '../../SASS/ProductList.sass'
 import ProdCardContainer from '../ProductCards/ProdCardsContainer'
 // import { State } from '../../Types/types'
 // import { Provider } from 'react-redux'
-import { getProducts } from '../../API/products'
+import { getProducts } from '../../API/api'
 
 const ProductList : React.FC<any> = ( props ) => {
     // console.log(props);
@@ -25,6 +25,7 @@ const ProductList : React.FC<any> = ( props ) => {
                     props.Products.list.map((item : any,  i : number)  :  JSX.Element => { 
                         return (
                             <ProdCardContainer    
+                                key={item.id + i}
                                 props={item}
                                 dispatch= {props.dispatch}
                                 added={props.added}

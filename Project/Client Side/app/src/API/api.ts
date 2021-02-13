@@ -7,7 +7,7 @@ const instance = axios.create({
 
 export const getProducts = async(props : string) => {
      try{
-          return await instance.get( props)
+          return await instance.get( props + "?_limit=2")
           .then(response => response.data )
           .catch(err => console.log(err))
      } catch (err) {
@@ -15,7 +15,6 @@ export const getProducts = async(props : string) => {
      }
 }
 export const getSlidesList = async(props : string) => {
-
      try{
           return await instance.get(props)
                     .then(response => response.data )

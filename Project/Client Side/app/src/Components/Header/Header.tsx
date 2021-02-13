@@ -33,6 +33,16 @@ const Header : React.FC<any> = (props) => {
                         ABOUT
                     </Link>
                 </nav>
+                <div className="user">
+                    <div className="user-wrap">
+                        <div className="notification-wrap">
+                                <i className="far fa-bell"></i>
+                        </div>
+                        <div className="user-access">
+                                <i className="fas fa-user"></i>
+                        </div>
+                    </div>
+                </div>
                 <div className="cart"            // КОРЗИНА
                     onMouseOver={()=>{
                         setPopup(true)
