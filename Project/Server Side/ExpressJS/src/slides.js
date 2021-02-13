@@ -3,7 +3,8 @@ const express = require("express");
 module.exports= {
     list: [
         {
-            baner : "https://www.bookvoed.ru/files/6389/20/18.png"
+            baner : "https://imgscf.slidemembers.com/docs/1/1/228/pharmaceutical_industry_easy_slides_design_227947.jpg",
+            id : "",
         }
     ]
 };

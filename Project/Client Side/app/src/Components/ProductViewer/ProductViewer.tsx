@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import PhotoViewer from '../Modals/PhotoViewer';
+import '../../SASS/ProductViewer.sass'
 
 const ProductViewer = (props : any) => {
     if (!props.selectedObject.id) {
@@ -26,24 +27,32 @@ const ProductViewer = (props : any) => {
 
     return (
         <div>
-            PRODUCT VIEWER 
-            <div className=""
-                    onClick={() => {openModal()}}
-            >
-                <img src={photo[0]} alt=""/>    
+            <div className="product-view-header">
+                <div className=""
+                        onClick={() => {openModal()}}
+                        >
+                    <img src={photo[0]} alt=""/>    
+                </div>
+                <div className="product-view-headeer-info">
+                        <div className="">{name}</div>
+                        <div className="">
+                                {cost.new}p
+                        </div>
+                        <div className="product-view-add-button">
+                            <button
+                                        onClick = {(e : any) => Add_Remove_Product(e)}
+                                        >
+                                    {buttonAdded}
+                            </button>
+                        </div>
+
+                </div>
             </div>
-            <div className="">{name}</div>
-            <div className="">{discribes}</div>
-            <div className="">
-                {cost.new}
-            </div>
-            <div className="">
-                <button
-                            onClick = {(e : any) => Add_Remove_Product(e)}
-                >
-                    {buttonAdded}
-                </button>
-            </div>
+
+            <div className="product-view-discribes">
+                        {discribes}
+                </div>
+
             {modal && <PhotoViewer 
           img={photo[0]}
           event={close}

@@ -3,7 +3,7 @@ import React from 'react'
 const Catalog = () => {
     return (
         <div>
-                Hallo! Its catalog
+                It`s a catalog
         </div>
     )
 }
