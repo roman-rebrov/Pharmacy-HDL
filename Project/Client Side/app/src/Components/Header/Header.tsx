@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import '../../SASS/Header.sass'
+import HeaderNavContainer from './HeaderNavContainer'
 
 const Header : React.FC<any> = (props) => {
     let [ popup, setPopup ] : any = React.useState(false);
@@ -25,14 +26,35 @@ const Header : React.FC<any> = (props) => {
     return (
         <div className='header-main-container'>
             <header className="App-header block" >
+                    <Link  to='/' className="">
+                        <div className="logo"   >
+                        {/* HOME */}
+                                <div className="logo-name">
+                                        HDL 
+                                </div>
+                                <div className="logo-line"></div>
+                                <div className="logo-specific">
+                                        pharmacy
+                                </div>
+                        </div>
+                    </Link>
                 <nav>
-                    <Link  to='/'>
+                <Link  to='/' className="link">
                         HOME
                     </Link>
-                    <Link to='/about'>
+
+                    <Link to='/about'  className="link">
                         ABOUT
                     </Link>
                 </nav>
+                <div className="header-phone">
+                        <div className="">
+                        <span>
+                        <i className="fas fa-phone"></i>
+                            +1 212-253-8686
+                        </span>
+                    </div>
+                </div>
                 <div className="user">
                     <div className="user-wrap">
                         <div className="notification-wrap">
@@ -129,6 +151,7 @@ const Header : React.FC<any> = (props) => {
                         }
                 </div>
             </header>
+                <HeaderNavContainer/>
         </div> 
     )
 }

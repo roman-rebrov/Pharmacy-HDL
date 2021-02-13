@@ -3,6 +3,6 @@ import { watcher } from './sagas'
 
 export function* rootWatcher(){
     yield all([
-        watcher
+        watcher,
     ])
 }

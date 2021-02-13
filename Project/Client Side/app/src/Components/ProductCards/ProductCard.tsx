@@ -78,7 +78,7 @@ const ProductCard : React.FC<
                 </div>
                 <div className="cost-wrap">
                     <div className="new-cost">
-                        {products.cost['new']} 
+                        {products.cost['new']}р
                     </div>
                     <div className="add-in-cart-wrap"> 
                         <button

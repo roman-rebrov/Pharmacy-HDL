@@ -3,11 +3,13 @@ import '../../SASS/Content.sass'
 // import { JsxElement } from 'typescript'
 import { Switch, Route } from 'react-router-dom' 
 
+
 import { AboutContainer,
         ProdListContainer,
         ProductViewerContainer,
         PayComponentContainer,
         SliderContainer, 
+        CatalogContainer,
     } from '../../Components'
 
 // import {ProductList, State } from '../../Types/types'
@@ -27,6 +29,7 @@ const Content : React.FC<any> = (props ) => {
             <div className="content-child-container  block" >
                 <Switch>
                     <Route exact path='/about' render={() =>  <AboutContainer/>} />
+                    <Route exact path='/catalog' render={() =>  <CatalogContainer/>} />
                     <Route exact path='/' render={() => [ <SliderContainer/>,  <ProdListContainer /> ]} />
                     <Route exact path='/productViewer' render={() => <ProductViewerContainer />} />
                     <Route exact path='/payPage' render={() => <PayComponentContainer />} />

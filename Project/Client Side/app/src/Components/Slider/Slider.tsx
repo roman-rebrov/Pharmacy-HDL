@@ -1,6 +1,6 @@
 import React from 'react'
 import { getSlidesList } from '../../API/api'
-
+import Spinner from '../Spinner'
 
 const Slider = (props : any) => {
     const getSl = async() => {
@@ -19,7 +19,7 @@ const Slider = (props : any) => {
             { props.slides.length > 0 ? ( 
                 <img src={props.slides[0].baner} className="" alt=""/>
              ):
-            'SLIDER'
+                <Spinner/>
             }
         </div>
     )

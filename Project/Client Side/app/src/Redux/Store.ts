@@ -1,10 +1,11 @@
-import InitialState from './initialState'
-import {State} from '../Types/types'
-import {createStore, combineReducers, applyMiddleware} from 'redux'
+import {createStore, applyMiddleware} from 'redux'
 import createSagaMiddleare from 'redux-saga'
 import { rootReducer } from './rootReducer';
-import defaultReducer from './defaultReducer';
 import { rootWatcher } from '../Saga'
+
+// import defaultReducer from './defaultReducer';
+// import InitialState from './initialState'
+// import {State} from '../Types/types'
 
 const sagaMiddleware = createSagaMiddleare();
 const Store = createStore(rootReducer as any,  applyMiddleware(sagaMiddleware));

@@ -1,5 +1,4 @@
-import  axios from 'axios'
-
+import  axios from 'axios' 
 
 const instance = axios.create({
      baseURL : "http://localhost:3219",
@@ -7,7 +6,7 @@ const instance = axios.create({
 
 export const getProducts = async(props : string) => {
      try{
-          return await instance.get( props + "?_limit=2")
+          return await instance.get( props )
           .then(response => response.data )
           .catch(err => console.log(err))
      } catch (err) {

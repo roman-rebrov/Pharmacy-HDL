@@ -1,25 +1,29 @@
-import React from 'react'
+import React  from 'react'
 import '../../SASS/ProductList.sass'
 import ProdCardContainer from '../ProductCards/ProdCardsContainer'
 // import { State } from '../../Types/types'
 // import { Provider } from 'react-redux'
 import { getProducts } from '../../API/api'
+import Spinner from '../Spinner'
 
 const ProductList : React.FC<any> = ( props ) => {
     // console.log(props);
+
     const  io = async() => {
         const ttt = await getProducts("/")
-        
         await props.dispatch({type: "GET_PRODUCTS", payload: {...ttt}})
     };
     
     if(props.Products.list.length === 0){
         // console.log(props.dispatch);
         io()
-    }
+    };
     return (
         <div>
-            Our Products :
+            <div className="home-recommended-title title">
+                    recommended 
+            </div>
+            { props.Products.list.length  === 0 &&  <Spinner/>} 
             <div className="product-list">
                 {
                     props.Products.list.map((item : any,  i : number)  :  JSX.Element => { 
