@@ -4,14 +4,14 @@ import './SASS/default.sass'
 import App from './App';
 import reportWebVitals from './reportWebVitals'; 
 import Store from './Redux/Store'
-import { State } from './Types/types'
 import { Provider } from 'react-redux'
+
+import { State } from './Types/types'
 // import './index.css';
 // interface RenderInt{ 
 //   render : (props : {}) => void
 // }
-// let state = Store.getState() as {State : State}
-//   console.log(state);
+
   
   ReactDOM.render(
     <React.StrictMode>

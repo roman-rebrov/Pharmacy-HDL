@@ -1,5 +1,5 @@
 import { all } from 'redux-saga/effects'
-import { watcher } from './sagas'
+import { watcher } from './getProductSagas'
 
 export function* rootWatcher(){
     yield all([

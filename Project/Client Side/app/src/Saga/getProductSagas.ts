@@ -1,5 +1,5 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-// import { getProducts, getSlidesList } from '../API/api'
+import { getProducts, getSlidesList } from '../API/api'
 
 function* worker (action : {}) {
     try{
