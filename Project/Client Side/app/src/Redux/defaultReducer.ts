@@ -1,5 +1,9 @@
 import { State } from '../Types/types';
-import { ADD_REMOVE_PRODUCT_IN_CART } from './Actions'
+import {
+     ADD_REMOVE_PRODUCT_IN_CART,
+     SELECTED_FOR_VIEWING,
+     GET_PRODUCTS,
+} from './Actions'
 import InitialState from './initialState';
  
  
@@ -7,7 +11,7 @@ import InitialState from './initialState';
 
     
     switch(action.type) {
-        case "GET_PRODUCTS":            
+        case GET_PRODUCTS:            
             return ({
                 ...state,
                 Products: {
@@ -57,7 +61,7 @@ import InitialState from './initialState';
                             added: [...added],
                         }
                 });
-                case "SELECTED_FOR_VIEWING" :
+                case  SELECTED_FOR_VIEWING :
                     let obj : {} = {};
                     state.Products.list.forEach( ( item : any, i : number ) => {
                         // console.log(action.payload);
