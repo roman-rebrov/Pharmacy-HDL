@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import ProductListReducer from "./defaultReducer";
-import sliderReducer from './slider'
+import sliderReducer from './sliderReducer'
 
 
 export const rootReducer  = combineReducers({

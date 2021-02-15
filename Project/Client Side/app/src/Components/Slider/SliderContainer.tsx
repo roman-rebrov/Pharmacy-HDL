@@ -3,19 +3,21 @@ import Slider from './Slider'
 import { connect } from 'react-redux'
 import '../../SASS/slider.sass'
 import { ASYNC_GET_SLIDE_LIST } from '../../Redux/Actions/asyncActions'
+import { State } from '../../Types/types'
 
 
-const SliderContainer = () => {
+const SliderContainer : React.FC = () => {
 
-    const mapStateToProps = (state : any) => {
+    const mapStateToProps = (state : State) : {} => {
         return({
             slides : [...state.slider]
         })
     };
-    const mapDispatchToProps = (dispatch : any) => {
+    const mapDispatchToProps = (dispatch : (action : {type : string}) => void) => {
         return({
-                getSlides: (slides : any) => {
-                    dispatch({type : ASYNC_GET_SLIDE_LIST, payload: [...slides.list]})
+                getSlides: () => {
+                    dispatch({type : ASYNC_GET_SLIDE_LIST})
+                    // dispatch({type : ASYNC_GET_SLIDE_LIST, payload: [...slides.list]})
                 }
         })
     };

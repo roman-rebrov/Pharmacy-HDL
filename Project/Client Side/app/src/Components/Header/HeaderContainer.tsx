@@ -9,6 +9,7 @@ type addedType = {
     addedToCart : {}[]
 };
 
+
 const HeaderContainer : React.FC = () => {
     const removeActionCreator = (id : string) => ({
         type: ADD_REMOVE_PRODUCT_IN_CART, 
