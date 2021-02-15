@@ -2,7 +2,7 @@ import React from 'react'
 import { getSlidesList } from '../../API/api'
 import Spinner from '../Spinner'
 
-const Slider = (props : any) => {
+const Slider : React.FC  = (props : any) => {
     const getSl = async() => {
         let slides = await getSlidesList("/slides");
         

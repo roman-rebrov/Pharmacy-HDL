@@ -1,5 +1,5 @@
 import Products from './Products'
-import {State} from '../Types/types'
+import {productsBlockType} from '../Types/types'
 
 const addedToCart = {
     addedId : [],
@@ -7,9 +7,9 @@ const addedToCart = {
 }
 
 
-let InitialState : State = {
+let productsBlock : productsBlockType = {
     Products,
     addedToCart,
     viewPage: {}
 }
-export default InitialState;
+export default productsBlock;

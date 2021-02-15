@@ -1,7 +1,8 @@
 import React from 'react'
 import Catalog from './Catalog'
 
-const CatalogContainer = () => {
+const CatalogContainer : React.FC = () => {
+    
     return ( <Catalog/> )
 }
 

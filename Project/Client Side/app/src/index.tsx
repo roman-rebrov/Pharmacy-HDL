@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import Store from './Redux/Store'
 import { Provider } from 'react-redux'
 
-import { State } from './Types/types'
+// import { State } from './Types/types'
 // import './index.css';
 // interface RenderInt{ 
 //   render : (props : {}) => void

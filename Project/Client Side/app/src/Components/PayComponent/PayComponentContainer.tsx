@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { ADD_REMOVE_PRODUCT_IN_CART } from '../../Redux/Actions';
+import { Action,  ADD_REMOVE_PRODUCT_IN_CART } from '../../Redux/Actions/Actions';
+import { ProdObj, State } from '../../Types/types';
 // import addedToCart from '../../Redux/addedReducer';
 import PayComponent from './PayComponent'
 
@@ -14,18 +15,18 @@ const PayComponentContainer : React.FC = ()  => {
             type : "SELECTED_FOR_VIEWING",
             payload : id,
     });
-    const mapStateToProps = (state : any) => { 
+    const mapStateToProps = (state : State) => { 
         let total : number = 0;
-        state.productsBlock.addedToCart.added.forEach((element : any) => { 
+        state.productsBlock.addedToCart.added.forEach((element : any) : any => { 
             // console.log(element.cost);
-            total += element.cost;
+            total += +element.cost;
         });
         return({
             addedToCart : [...state.productsBlock.addedToCart.added],
  
         })
     };
-    const mapDispatchToProps = (dispatch : any) => {
+    const mapDispatchToProps = (dispatch : (action : Action) => void) => {
         return({
             viewer : (id : string) => {
                 dispatch(viewerActionCreator(id))

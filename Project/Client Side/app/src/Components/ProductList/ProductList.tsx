@@ -10,8 +10,8 @@ const ProductList : React.FC<any> = ( props ) => {
     // console.log(props);
 
     const  io = async() => {
-        const ttt = await getProducts("/")
-        await props.dispatch({type: "GET_PRODUCTS", payload: {...ttt}})
+        const products = await getProducts("/")
+        await props.dispatch({type: "GET_PRODUCTS", payload: {...products}})
     };
     
     if(props.Products.list.length === 0){

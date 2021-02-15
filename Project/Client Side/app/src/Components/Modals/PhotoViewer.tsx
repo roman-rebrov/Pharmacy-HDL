@@ -1,14 +1,14 @@
 import React from 'react'
 import '../../SASS/modal-photo.sass'
 
-const PhotoViewer = ({img, event} : {img : string, event : () => void}) : any => {
-    const close = (e : any) => {
+const PhotoViewer : React.FC<{img : string, event : ()=>void}> = ({img, event} ) => {      // : {img : string, event : () => void}
+    const close = (e : React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         event()
     }
     return ( 
         <div className='modal-photo-viewer-wrap'
         onClick={(e) => {
-            close(e)
+            // close(e)
             // e.stopPropagation()
             }}
         >

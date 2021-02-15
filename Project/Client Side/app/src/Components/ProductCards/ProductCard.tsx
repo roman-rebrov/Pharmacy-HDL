@@ -10,7 +10,7 @@ import PhotoViewer from '../Modals/PhotoViewer'
 
 
 const ProductCard : React.FC<
-    {products : ProdObj, 
+    {products : any, 
     addedButton : string,
     addedProductFunction : (id : string) => void,
     dispatch : any
@@ -26,7 +26,7 @@ const ProductCard : React.FC<
         // console.log(props);
     let  {products, addedButton, addedProductFunction, dispatch} : {
             addedButton : string,
-            products : ProdObj, addedProductFunction : (id : string) => void,
+            products : any, addedProductFunction : (id : string) => void,
             dispatch : any,
         }  =  props;
     let [modal, setModal]  = useState(false)

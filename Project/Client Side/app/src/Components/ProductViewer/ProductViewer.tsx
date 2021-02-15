@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PhotoViewer from '../Modals/PhotoViewer';
 import '../../SASS/ProductViewer.sass'
 
-const ProductViewer = (props : any) => {
+const ProductViewer : React.FC  = (props : any) => {
     if (!props.selectedObject.id) {
         window.location.href = "http://localhost:3000/";
     }

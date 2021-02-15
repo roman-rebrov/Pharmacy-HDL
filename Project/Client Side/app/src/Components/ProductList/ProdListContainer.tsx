@@ -1,20 +1,21 @@
 import React from 'react'
 import ProductList from './ProductList'
 import { connect } from 'react-redux'
-// import { State } from '../../Types/types'
+import { State } from '../../Types/types'
+import { Action } from '../../Redux/Actions/Actions'
 
 const   ProdListContainer : React.FC = ( )  => {
  
-    const mapStateToProps = (store : any) : {} => {
+    const mapStateToProps = (state : State) : {} => {
         
         return {
-            ...store.productsBlock,
+            ...state.productsBlock,
 
-            added : [...store.productsBlock.addedToCart.addedId],
+            added : [...state.productsBlock.addedToCart.addedId],
         }
     };
     
-    const mapDispatchTpProps = (dispatch : any) : {} =>{
+    const mapDispatchTpProps = (dispatch : (action : Action) => void) : {} =>{
         return{
             dispatch
         }

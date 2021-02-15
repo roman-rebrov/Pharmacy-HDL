@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import '../../SASS/PayComponent.sass'
+import { ProdObj } from '../../Types/types';
 
-const PayComponent : any = (props : any) => {
+const PayComponent : React.FC  = (props : any) => {
     let total : number = 0;
     let { remove } = props;
-    props.addedToCart.forEach((element : any) => {
+    props.addedToCart.forEach((element : ProdObj) => {
         total += Number(element.cost);
     });
     const event = (id : string) => {
@@ -21,7 +22,7 @@ const PayComponent : any = (props : any) => {
             <div className="order-objects-wrap">
                 <div className="order-objects">
                     { 
-                        props.addedToCart.map((el : any , i : number) => (
+                        props.addedToCart.map((el : ProdObj , i : number) => (
                             <div key={el.id + i} className="order-objects_item">
                                 <Link to='/productViewer' onClick={()=> {eventForView(el.id)}}>
                                     <div className="">

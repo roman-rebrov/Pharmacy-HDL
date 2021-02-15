@@ -1,38 +1,36 @@
-import { State } from '../Types/types';
 import {
      ADD_REMOVE_PRODUCT_IN_CART,
      SELECTED_FOR_VIEWING,
      GET_PRODUCTS,
-} from './Actions'
-import InitialState from './initialState';
+     Action,
+} from './Actions/Actions'
+import productsBlockInit from './initialState';
+import {ProdObj, ProductList, productsBlockType} from '../Types/types'
  
  
- const defaultReducer = (state : State = InitialState, action : any) : State => {
+ const ProductListReducer = (productsBlock : productsBlockType = productsBlockInit,  action : Action | {type:  string, payload : {list : {}[]}}) : productsBlockType => {
 
     
     switch(action.type) {
         case GET_PRODUCTS:            
             return ({
-                ...state,
+                ...productsBlock,
                 Products: {
                     ...action.payload
                 }
             });
             case ADD_REMOVE_PRODUCT_IN_CART:
             
-                // console.log(action);
                 const { payload } = action;
-                let { added, addedId } : any = state.addedToCart;
+                let { added, addedId } : any = productsBlock.addedToCart;
                 
-                // console.log(Products);
                 
-                for (let i : number = 0; i  <  state. addedToCart.added.length; i++){
+                for (let i : number = 0; i  <  productsBlock. addedToCart.added.length; i++){
                     if(added[i].id === payload) { 
                         added.splice(i , 1) ;
                         addedId.splice(i , 1) ;
-                        // console.log(addedToCart);
                         return({
-                            ...state,
+                            ...productsBlock,
                             addedToCart: {
                                 addedId: [...addedId],
                                 added: [...added],
@@ -40,7 +38,7 @@ import InitialState from './initialState';
                         })
                     }
                 }
-                const { list } : any = state.Products;
+                const { list } : any  = productsBlock.Products;
                 
                 for (let i : number = 0; i < list.length ; i++) {
                     if (list[i].id === payload){
@@ -52,10 +50,9 @@ import InitialState from './initialState';
                         });
                     }
                 }
-                // console.log(addedToCart);
                 
                 return({
-                    ...state,
+                    ...productsBlock,
                         addedToCart: {
                             addedId: [...addedId],
                             added: [...added],
@@ -63,19 +60,18 @@ import InitialState from './initialState';
                 });
                 case  SELECTED_FOR_VIEWING :
                     let obj : {} = {};
-                    state.Products.list.forEach( ( item : any, i : number ) => {
-                        // console.log(action.payload);
+                    productsBlock.Products.list.forEach( ( item : any, i : number ) => {
                         if( item.id === action.payload ){
                             obj = item
                         }
                     });
                     return({
-                        ...state,
+                        ...productsBlock,
                         viewPage: { ...obj }
                     });
 
     }
-    return state
+    return productsBlock
 };
 
-export default defaultReducer;
+export default ProductListReducer;

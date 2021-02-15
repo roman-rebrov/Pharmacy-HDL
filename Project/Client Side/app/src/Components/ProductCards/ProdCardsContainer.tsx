@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import ProductCard from './ProductCard'
-import { ProdObj } from '../../Types/types'
+import { ProdObj, State } from '../../Types/types'
 import {
     ADD_REMOVE_PRODUCT_IN_CART,
     // Adding_Action_Type
-} from '../../Redux/Actions'
+} from '../../Redux/Actions/Actions'
 import { withRouter } from 'react-router'
 // import { render } from '@testing-library/react'
 
@@ -39,7 +39,7 @@ const ProdCardsContainer : React.FC<{
     }
     const addedButton : string = added.indexOf(props.id) === -1 ? 'Add' : 'Remove'
 
-    const mapStateToProps = (state : any) => ({
+    const mapStateToProps = (state : State) => ({
         products : props,
         addedProductFunction,
         addedButton,

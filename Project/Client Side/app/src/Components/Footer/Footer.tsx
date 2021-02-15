@@ -6,7 +6,7 @@ const Footer : React.FC = () : React.ReactElement => {
         <div className = 'footer'>
             <div className="footer-block block">
                 <div className="footer-brand">
-                    HDL America
+                        HDL America
                 </div>
             </div>
         </div>

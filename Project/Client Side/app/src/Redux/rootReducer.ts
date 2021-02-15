@@ -1,21 +1,10 @@
 import { combineReducers } from "redux";
-import ProductList from "./defaultReducer";
-import slider from './slider'
+import ProductListReducer from "./defaultReducer";
+import sliderReducer from './slider'
 
 
-export const rootReducer : {} = combineReducers({
-    productsBlock : ProductList,
-    slider,
+export const rootReducer  = combineReducers({
+    productsBlock : ProductListReducer,
+    slider : sliderReducer,
 });
 
-
-// import addedToCart from "./addedReducer";
-// import selectedReducer from './selectedReducer'
-// import addedToCartReducer from './addedToCartReducer'
-// import selectedForViewing from './selectedForViewing'
-
-
-// addedToCartReducer, 
-// selectedForViewing,
-// addedToCart,
-// selectedReducer,

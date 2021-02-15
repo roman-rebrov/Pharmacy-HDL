@@ -1,9 +1,13 @@
 import React from 'react'
 import Header from './Header'
-// import {State} from '../../Types/types'
 import { connect } from 'react-redux'
-import { ADD_REMOVE_PRODUCT_IN_CART } from '../../Redux/Actions'
+import { Action,  ADD_REMOVE_PRODUCT_IN_CART } from '../../Redux/Actions/Actions'
+import { State } from '../../Types/types'
 
+type addedType = {
+    added : string[],
+    addedToCart : {}[]
+};
 
 const HeaderContainer : React.FC = () => {
     const removeActionCreator = (id : string) => ({
@@ -15,17 +19,13 @@ const HeaderContainer : React.FC = () => {
         payload: id
     });
 
-    const mapStateToProps = (state : any) : any => {
-        // console.log(state.State.Products.list[1].cost.new);
-        
+    const mapStateToProps = ( state : State ) : addedType => {
         return {
-            // added : [...state.addedToCart],
             added : [...state.productsBlock.addedToCart.addedId],
             addedToCart : [...state.productsBlock.addedToCart.added],
-            // products : state.State.Products.list,
         }
     };
-    const mapDispatchToProps = (dispatch : any) : any => {
+    const mapDispatchToProps = ( dispatch : (action : Action) => void ) : any => { 
         return { 
             remove : (id : string) => { 
                 dispatch(removeActionCreator(id))
@@ -39,9 +39,9 @@ const HeaderContainer : React.FC = () => {
         }
     };
 
-    const HeaderWrap = connect(mapStateToProps, mapDispatchToProps)(Header)
+    const HeaderWrap = connect(mapStateToProps, mapDispatchToProps)(Header);
 
-    return ( <HeaderWrap/> )
+    return ( <HeaderWrap/> );
 }
 
-export default HeaderContainer 
+export default HeaderContainer ;
