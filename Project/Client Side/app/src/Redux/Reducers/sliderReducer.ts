@@ -1,4 +1,4 @@
-import { Action, GET_SLIDE_LIST } from './Actions/Actions'
+import { Action, GET_SLIDE_LIST } from '../Actions/Actions'
 
 const slides : [] = []
 

@@ -1,22 +1,17 @@
 import React  from 'react'
+import { ASYNC_GET_PRODUCT_LIST } from '../../Redux/Actions/asyncActions'
 import '../../SASS/ProductList.sass'
 import ProdCardContainer from '../ProductCards/ProdCardsContainer'
-// import { State } from '../../Types/types'
-// import { Provider } from 'react-redux'
-import { getProducts } from '../../API/api'
 import Spinner from '../Spinner'
 
 const ProductList : React.FC<any> = ( props ) => {
-    // console.log(props);
 
-    const  io = async() => {
-        const products = await getProducts("/")
-        await props.dispatch({type: "GET_PRODUCTS", payload: {...products}})
+    const  getProducts = () => {
+        props.dispatch({ type: ASYNC_GET_PRODUCT_LIST });
     };
     
     if(props.Products.list.length === 0){
-        // console.log(props.dispatch);
-        io()
+        getProducts()
     };
     return (
         <div>

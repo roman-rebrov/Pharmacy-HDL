@@ -62,7 +62,7 @@ app.post("/test", cors(), (req, res) => {
     res.json({
         users : UserBase,
         main : checkUser(),
-        status : DB.poop,
+        status : DB.pop,
         text : 'Kick!',
         back : req.body
     })

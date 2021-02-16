@@ -4,7 +4,6 @@ import ProductCard from './ProductCard'
 import { ProdObj, State } from '../../Types/types'
 import {
     ADD_REMOVE_PRODUCT_IN_CART,
-    // Adding_Action_Type
 } from '../../Redux/Actions/Actions'
 import { withRouter } from 'react-router'
 // import { render } from '@testing-library/react'
@@ -32,8 +31,6 @@ const ProdCardsContainer : React.FC<{
     })
     const addedProductFunction = (id : string) : void => {
         const action = Add_Remove_Action_Creater(ADD_REMOVE_PRODUCT_IN_CART, id)
-        // console.log(action);
-        // console.log(dispatch);
         
         dispatch(action)
     }

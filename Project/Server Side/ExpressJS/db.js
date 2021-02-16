@@ -1,9 +1,9 @@
 const express = require("express");
 // const cors = require("cors");
 const app = express();
- let poop = {
+ let pop = {
     kolaPanch: 'Key'
 }
 module.exports = {
-    poop : poop
+    pop : pop
 }

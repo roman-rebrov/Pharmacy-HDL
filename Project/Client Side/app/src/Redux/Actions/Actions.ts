@@ -18,3 +18,8 @@ export const getSlideListActionCreator = (slides : {list : []}) : Action =>( {
     type : GET_SLIDE_LIST, 
     payload: [...slides.list]
 })
+
+export const getProductListActionCreator = (products : {}) : Action =>( {
+    type : GET_PRODUCTS, 
+    payload: {...products}
+})

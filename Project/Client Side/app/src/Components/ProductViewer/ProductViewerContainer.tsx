@@ -11,7 +11,7 @@ import ProductViewer from './ProductViewer'
 //     addedProductFunction : (id : string) => void
 // };
 
-const ProductViewerContainer = () => {
+const ProductViewerContainer : React.FC = () => {
     
     const Add_Remove_Action_Creater = (type : string, payload : string) : {} =>  ({
         type,
