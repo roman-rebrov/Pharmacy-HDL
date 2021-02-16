@@ -23,7 +23,6 @@ const ProductCard : React.FC<
     // }, 
         props
     )  => {
-        // console.log(props);
     let  {products, addedButton, addedProductFunction, dispatch} : {
             addedButton : string,
             products : any, addedProductFunction : (id : string) => void,
@@ -43,17 +42,12 @@ const ProductCard : React.FC<
     };
     const openModal = async() => {
         setModal(true);
-
-        // const ttt = await getProducts()
-        // await console.log(ttt.list  );
-        
     };
     const close = () => {
         setModal(false)
     };
     const Add_Remove_Product = (event : MouseEvent) => {
         event.preventDefault()
-        // console.log(products.id);
         
         addedProductFunction(products.id)
         button = button === 'Add' ? 'Remove' : 'Add'

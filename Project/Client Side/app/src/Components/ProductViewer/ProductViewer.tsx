@@ -35,8 +35,8 @@ const ProductViewer : React.FC  = (props : any) => {
                 </div>
                 <div className="product-view-headeer-info">
                         <div className="">{name}</div>
-                        <div className="">
-                                {cost.new}p
+                        <div className="product-view-headeer-cost">
+                                {cost.new}p 
                         </div>
                         <div className="product-view-add-button">
                             <button
