@@ -28,7 +28,7 @@ const ProductViewer : React.FC  = (props : any) => {
     return (
         <div>
             <div className="product-view-header">
-                <div className=""
+                <div className="product-view-demo-photo"
                         onClick={() => {openModal()}}
                         >
                     <img src={photo[0]} alt=""/>    

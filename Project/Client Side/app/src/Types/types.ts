@@ -41,13 +41,3 @@ export type addedToCartType = {
     added : eddedType[]
 }
 // ======================================
-
-// export type Adding_Action_Type = {
-//     type : typeof ADD_REMOVE_PRODUCT_IN_CART, 
-//     payload : string
-// };
-
-// export type Action = {
-//     type : string,
-//     payload : any
-// }

@@ -13,13 +13,11 @@ const Header : React.FC<any> = (props) => {
             // for(let i : number = 0; i <  added.length; i++) {
                 // if ( item.id === added[i] ){
                     total += Number(item.cost)
-                    // console.log(total);
                 // }
             // } 
         })
         return total
     };
-    // console.log(props);
     const event = (id : string) => {
         addRemove(id);
     }
@@ -28,7 +26,6 @@ const Header : React.FC<any> = (props) => {
             <header className="App-header block" >
                     <Link  to='/' className="">
                         <div className="logo"   >
-                        {/* HOME */}
                                 <div className="logo-name">
                                         HDL 
                                 </div>
@@ -89,13 +86,21 @@ const Header : React.FC<any> = (props) => {
                             <div className="cart-popup" style={{
                                         fontSize: "1rem"
                                     }}>
-                                {addedToCart.length === 0 && 'выберите товар'} <br/>
+                                        <div className="" style={{
+                                            color: "#d18e50"
+                                        }}>
+                                                {addedToCart.length === 0 && 'выберите товар'} <br/>
+                                        </div>
                                 {addedToCart.length === 0 ? 
                                         <div className="">
-                                            <div style={{ border : '1px solid',
+                                            <div style={{ 
+                                                border : '1px solid',
                                                 // backgroundColor: '#899e9d2',
                                                 fontSize: '1rem',
                                                 backgroundColor: '#677070a4',
+                                                display: 'flex',
+                                                justifyContent: "center"
+
                                             }}>in cart</div>
                                         </div>
                                      :
@@ -133,16 +138,15 @@ const Header : React.FC<any> = (props) => {
                                                 cursor : 'pointer',
                                                 color : 'white',
                                                 fontSize: '1rem',
-                                                display: 'block',
-                                                width: '100%'
+                                                display: 'flex',
+                                                width: '100%',
+                                                justifyContent: "center"
                                             }}
                                                 onClick={
                                                    () => setPopup(false)
                                                 }
                                             >
-                                                {/* <Link to='/productViewer'> */}
-                                                    in cart
-                                                {/* </Link> */}
+                                                        in cart
                                             </Link>
                                          {/* <input type="button" value='in'/> */}
                                      </div>
