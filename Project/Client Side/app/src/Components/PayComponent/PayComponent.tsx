@@ -7,7 +7,7 @@ const PayComponent : React.FC  = (props : any) => {
     let total : number = 0;
     let { remove } = props;
     props.addedToCart.forEach((element : ProdObj) => {
-        total += Number(element.cost);
+        total += Number(element.cost.new);
     });
     const event = (id : string) => {
         remove(id);
@@ -24,13 +24,13 @@ const PayComponent : React.FC  = (props : any) => {
                     { 
                         props.addedToCart.map((el : ProdObj , i : number) => (
                             <div key={el.id + i} className="order-objects_item">
-                                <Link to='/productViewer' onClick={()=> {eventForView(el.id)}}>
+                                <Link to='/productViewer' onClick={() => {eventForView(el.id)}}>
                                     <div className="">
                                         {el.name}
                                     </div>
                                 </Link>
                                 <div className="">
-                                    {el.cost}
+                                    {el.cost.new}
                                 </div>
                                 <div 
                                     className="order-objects-btn-remove"

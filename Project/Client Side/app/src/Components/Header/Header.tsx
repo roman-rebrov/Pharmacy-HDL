@@ -7,12 +7,12 @@ const Header : React.FC<any> = (props) => {
     let [ popup, setPopup ] : any = React.useState(false);
     let { addedToCart, addRemove} = props;                      //  products, added ,
     
-    const total = (prod: [{cost : string}]) : number => {
+    const total = (prod: [{cost : any}]) : number => {
         let total : number = 0;
         prod.forEach((item : any, i : number) => {
             // for(let i : number = 0; i <  added.length; i++) {
                 // if ( item.id === added[i] ){
-                    total += Number(item.cost)
+                    total += Number(item.cost.new)
                 // }
             // } 
         })
@@ -95,7 +95,6 @@ const Header : React.FC<any> = (props) => {
                                         <div className="">
                                             <div style={{ 
                                                 border : '1px solid',
-                                                // backgroundColor: '#899e9d2',
                                                 fontSize: '1rem',
                                                 backgroundColor: '#677070a4',
                                                 display: 'flex',
@@ -104,19 +103,19 @@ const Header : React.FC<any> = (props) => {
                                             }}>in cart</div>
                                         </div>
                                      :
-                                     <div className=""> 
+                                     <div className="added-products--fast-view_container"> 
                                             <div className="added-products--fast-view_wrap">
                                                 {
                                                     addedToCart.map((items : any, i : number) => {
-                                                        // debugger
-                                                        // for(let i : number = 0; i <  added.length; i++) {
-                                                            // if ( items.id === added[i] ){
                                                                 return (<div key={items.id} className="added-product">
                                                                             <div className="fast-view--name">
                                                                                 {items.name}
                                                                             </div>
                                                                             <div className="fast-view--cost">
-                                                                                {items.cost}
+                                                                               <div className="">
+                                                                                    {items.cost.new} 
+                                                                               </div>
+                                                                                <div>р</div>
                                                                             </div>
                                                                             <div 
                                                                                 className="fast-view-remove"
@@ -127,8 +126,6 @@ const Header : React.FC<any> = (props) => {
                                                                                 &times;
                                                                             </div>
                                                                         </div>)
-                                                            // }
-                                                        // }
                                                     })
                                                 }
                                             </div>
@@ -148,7 +145,6 @@ const Header : React.FC<any> = (props) => {
                                             >
                                                         in cart
                                             </Link>
-                                         {/* <input type="button" value='in'/> */}
                                      </div>
                                 }
                             </div>

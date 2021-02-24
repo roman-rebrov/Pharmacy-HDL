@@ -32,7 +32,15 @@ export type productsBlockType = {
 
 export type State = {
     productsBlock : productsBlockType,
-    slider : {}[]
+    slider : {}[],
+    recommendedList : Array<ProdObj>,
+    selectedObjects : {
+        addedToCart : {
+            addedId : string[],
+            added : eddedType[]
+        },
+        viewPage : {},
+    }
 };
 
 

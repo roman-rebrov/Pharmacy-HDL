@@ -1,13 +1,38 @@
-
-
+.flex 
+    display: flex
+    flex-direction: row
+.flx-center
+    display: flex
+    justify-content: center
+    align-items: center
+.nav-header-catalog
+    @extend .flx-center
 .header-nav
-    padding: .2em .8em
+    @extend .flex
+    padding: .2em 1em
     background-color: #abbfc8
-    color: black
-    font-size: .7em
+    // color: black
+    color: #374d50
+    font-size: .8em
     // background-color: #6a6e70
     a
         color: #374d50
         // text-decoration: none
         &:hover
             text-decoration: underline
+    .catalog-text
+        
+    
+.fa-bars
+    font-size: .7em
+    margin-right: .2em
+
+// -------------------------------
+.header-nav-topic-list
+    @extend .flx-center
+    margin-left: 1em
+    padding: 0 1em
+    border-left: .5px solid #374d5032
+    border-right: .5px solid #374d5032
+    font-size: .7em
+    

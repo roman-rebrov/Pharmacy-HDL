@@ -47,19 +47,27 @@ header
     color: #b9b9b9  
     border: 1px solid white
     right: 0
-    min-width: 5em
+    min-width: 13em
+    // width:  40%
 // ---------------------------------
+.added-products--fast-view_container
+c
 .added-product
     @extend .flex
     justify-content: space-between
     border-top: 1px solid #b9b9b9  
-    width: 10em
+    width: 100%
 .fast-view--name , .fast-view--cost
+    padding: 0 0.2em
     font-size: .9rem
     color: #696969
+.fast-view--cost    
+    @extend .flx-center
 .fast-view-remove
+    padding: 0 0.25em  
     cursor: pointer
     color: black
+    @extend .flx-center
     &:hover
         background-color: #799395
         color: white

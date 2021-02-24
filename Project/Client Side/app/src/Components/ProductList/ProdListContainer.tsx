@@ -9,9 +9,7 @@ const   ProdListContainer : React.FC = ( )  => {
     const mapStateToProps = (state : State) : {} => {
         
         return {
-            ...state.productsBlock,
-
-            added : [...state.productsBlock.addedToCart.addedId],
+            Products : {...state.productsBlock.Products},
         }
     };
     

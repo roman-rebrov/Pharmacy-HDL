@@ -1,11 +1,7 @@
 const express = require("express");
-// const cors = require("cors");
-// const app = express();   
-//  let pop = {
-//     Panch: 'Key'
-// }
-module.exports = {
-    ProductsDB : [
+
+module.exports= {
+    list : [
         {
             id : 'A01',
             brand : 'Унитекс',

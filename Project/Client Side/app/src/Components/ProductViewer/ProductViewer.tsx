@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import PhotoViewer from '../Modals/PhotoViewer';
 import '../../SASS/ProductViewer.sass'
+import Spinner from '../Spinner';
 
 const ProductViewer : React.FC  = (props : any) => {
-    if (!props.selectedObject.id) {
-        window.location.href = "http://localhost:3000/";
-    }
+    // if (!props.selectedObject.id) {
+        // window.location.href = "http://localhost:3000/";
+    // }
+
     const { id, name, discribes, photo, cost } = props.selectedObject;
     let buttonAdded = props.addedId.indexOf(id) === -1 ? 'Add' : 'Remove';
 
@@ -20,13 +22,19 @@ const ProductViewer : React.FC  = (props : any) => {
     };
 
     const Add_Remove_Product = (event : MouseEvent) => {
-        props.addedProductFunction(id)
+        // const obj = {
+        //     id : id,
+        //     name : name,
+        //     cost : cost.new
+        // }
+        props.addedProductFunction(props.selectedObject)
         // button = button === 'Add' ? 'Remove' : 'Add'
         // setButton(button)
     };
 
     return (
         <div>
+            {!props.selectedObject.id ?  <Spinner/> : 
             <div className="product-view-header">
                 <div className="product-view-demo-photo"
                         onClick={() => {openModal()}}
@@ -48,6 +56,7 @@ const ProductViewer : React.FC  = (props : any) => {
 
                 </div>
             </div>
+            }
 
             <div className="product-view-discribes">
                         {discribes}

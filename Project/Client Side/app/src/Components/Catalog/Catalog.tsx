@@ -1,9 +1,13 @@
 import React from 'react'
+import { ProdListContainer } from '..';
 
 const Catalog = () => {
     return (
         <div>
-                It`s a catalog
+            <div className="">
+                    
+            </div>
+                <ProdListContainer /> 
         </div>
     )
 }

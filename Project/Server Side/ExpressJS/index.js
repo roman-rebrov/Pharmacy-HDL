@@ -1,6 +1,5 @@
 const express = require("express");
 // const bodyParser = require("body-parser")
-const DB = require("./db")
 const cors = require("cors");
 const app = express();
 const port = 3219;
@@ -13,48 +12,37 @@ app.use(cors({
 app.listen(port, () => console.log("http://localhost:" + port));    
 
 
+let DB = require("./db")
 let  productList = require('./src/products');
 let  slides = require('./src/slides');
+let recommendedlist = require('./src/recommendedList')
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////      
-// ==================== DB ========================
-
 /**
-const products = {    
-  list: [
-      {
-          id: '001',
-          name: 'JProduct name',
-          img: [
-              '../img/image.png'
-          ],
-          category: '',
-          brand: 'Adidas',
-          cost: {
-              old: '350',
-              new: '299'
-          },
-          rating: {
-              votes: ['5', '5', '5'],
-          },
-          color: 'Black',
-          size: 'L'
-      },
-
-  ]
-}
+ * 
 */
-// /////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////      
+function getProductById(id) {
+    let obj = {};
+
+    DB.ProductsDB.forEach((item, i)  => {
+        if( item.id === id ){
+            obj = item;
+        }
+    })
+    return obj;
+};
+
 function checkUser(){
-    let usersBase = []
+    let usersBase = [];
     for ( let i = 0; i < UserBase.length; i++ ){
-        usersBase[i] = UserBase[i].User.accesses.userSession
+        usersBase[i] = UserBase[i].User.accesses.userSession;
         if ( usersBase[i].sessionKey === UserBase[i].User.accesses.userSession.sessionKey ){
-            usersBase.push(true)
+            usersBase.push(true);
         }
     }
-    return usersBase
-}
+    return usersBase;
+};
 
 app.post("/test", cors(), (req, res) => {
     const data = req.body
@@ -62,22 +50,42 @@ app.post("/test", cors(), (req, res) => {
     res.json({
         users : UserBase,
         main : checkUser(),
-        status : DB.pop,
+        status : DB,
         text : 'Kick!',
         back : req.body
     })
 })
 // ------------------------------------------------
 app.get("/", cors(), (req, res) => {
+    console.log("OK");
     setTimeout(() => {
         res.send(productList );
     }, 2000)
 });
 
+app.get("/product/:id", cors(), (req, res) => {
+    console.log(req.params.id);
+    console.log(req.query);
+    setTimeout(() => {
+        let productObject = getProductById(req.params.id);
+        console.log(productObject);
+
+        res.send(productObject );
+    }, 2000)
+});
+
 app.get("/slides", cors(), (req, res) => {
+    console.log("Yes");
+
     setTimeout(() => {
         res.send(slides );
     }, 2000)
+});
+
+app.get("/recommendedlist", cors(),(req, res) => {
+    setTimeout(() => {
+    res.send(recommendedlist.list);
+        }, 5000)
 });
 // ------------------------------------------------
 app.get("/newUser", cors(),  (req,res) => {
@@ -96,10 +104,8 @@ app.get("/persons", cors(), (req, res) => {
   console.log("persons");
   res.send( products);
 }); 
+
 // ===================================
-app.get("/home/recommented", cors(),(req, res) => {
-    res.send(' ');
-})
 app.get("/home/populars", cors(),(req, res) => {
     try{
         res.send(' ');

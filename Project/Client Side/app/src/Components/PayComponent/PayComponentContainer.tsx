@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Action,  ADD_REMOVE_PRODUCT_IN_CART } from '../../Redux/Actions/Actions';
+import { Action,  ADD_REMOVE_PRODUCT_IN_CART, REMOVE_SELECTED_FOR_VIEWING } from '../../Redux/Actions/Actions';
+import { asyncGetProductForViewActionCreator } from '../../Redux/Actions/asyncActions';
 import { ProdObj, State } from '../../Types/types';
 // import addedToCart from '../../Redux/addedReducer';
 import PayComponent from './PayComponent'
@@ -9,27 +10,27 @@ const PayComponentContainer : React.FC = ()  => {
 
     const removeActionCreator = (id : string) => ({
         type: ADD_REMOVE_PRODUCT_IN_CART, 
-        payload: id
+        payload: {id}
     });
-    const viewerActionCreator = (id : string) => ({
+    const viewerActionCreator = (obj : any) => ({
             type : "SELECTED_FOR_VIEWING",
-            payload : id,
+            payload : obj,
     });
     const mapStateToProps = (state : State) => { 
         let total : number = 0;
-        state.productsBlock.addedToCart.added.forEach((element : any) : any => { 
-            // console.log(element.cost);
+        state.selectedObjects.addedToCart.added.forEach((element : any) : any => { 
             total += +element.cost;
         });
         return({
-            addedToCart : [...state.productsBlock.addedToCart.added],
+            addedToCart : [...state.selectedObjects.addedToCart.added],
  
         })
     };
     const mapDispatchToProps = (dispatch : (action : Action) => void) => {
         return({
-            viewer : (id : string) => {
-                dispatch(viewerActionCreator(id))
+            viewer : (id : any) => {
+                dispatch(asyncGetProductForViewActionCreator(id))
+                dispatch({type : REMOVE_SELECTED_FOR_VIEWING, payload: ''})
             },
             remove : (id : string) => { 
                 dispatch(removeActionCreator(id));

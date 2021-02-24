@@ -5,40 +5,32 @@ import {Link} from 'react-router-dom'
 // import { render } from '@testing-library/react'
 import PhotoViewer from '../Modals/PhotoViewer'
 
-// import { getProducts } from '../../API/products'
  
 
 
-const ProductCard : React.FC<
-    {products : any, 
-    addedButton : string,
-    addedProductFunction : (id : string) => void,
-    dispatch : any
-}
-> =  (
-    //     {products, addedButton, addedProductFunction, dispatch} : {
-    //     addedButton : string,
-    //     products : ProdObj, addedProductFunction : (id : string) => void,
-    //     dispatch : any,
-    // }, 
-        props
-    )  => {
-    let  {products, addedButton, addedProductFunction, dispatch} : {
-            addedButton : string,
-            products : any, addedProductFunction : (id : string) => void,
-            dispatch : any,
+const ProductCard : React.FC<{productObject : ProdObj, 
+    // addedButton : string,
+    addedProductFunction : (id : any) => void,
+    added: Array<string>,
+    selectForViewing: (id : string) => void
+}> =  ( props )  => {
+
+    let  {productObject,
+            added,
+            addedProductFunction,
+            selectForViewing
+    } : {
+            added: Array<string>,
+            productObject : any, 
+            addedProductFunction : (id : any) => void,
+            selectForViewing: (id : string) => void
         }  =  props;
+    const addedButton : string = added.indexOf(productObject.id) === -1 ? 'Add' : 'Remove'
     let [modal, setModal]  = useState(false)
     let [button, setButton] = React.useState(addedButton);
-
+    
     const event = (id : string) => {
-        // debugger
-        // console.log(id);
-        const action = {
-            type : "SELECTED_FOR_VIEWING",
-            payload : id,
-        }
-        dispatch(action)
+        selectForViewing(id)
     };
     const openModal = async() => {
         setModal(true);
@@ -47,32 +39,27 @@ const ProductCard : React.FC<
         setModal(false)
     };
     const Add_Remove_Product = (event : MouseEvent) => {
-        event.preventDefault()
-        
-        addedProductFunction(products.id)
-        button = button === 'Add' ? 'Remove' : 'Add'
-        setButton(button)
-        
+        addedProductFunction(productObject)
     };
     
         return (
             <div className='Products'> 
             <div className="product-card">
-                <Link to='/productViewer' onClick={()=> {event(products.id)}}>
+                <Link to='/productViewer' onClick={()=> {event(productObject.id)}}>
                     <div className="product-name">
-                            {products.name}
+                            {productObject.name}
                     </div>
                 </Link>
                 <div className="product-photo"
                     onClick={() => {openModal()}}
                 >
-                    <img src={products.photo[0]} alt={`Photo ${
-                        products.brand
+                    <img src={productObject.photo[0]} alt={`Photo ${
+                        productObject.brand
                     }`}/>
                 </div>
                 <div className="cost-wrap">
                     <div className="new-cost">
-                        {products.cost['new']}р
+                        {productObject.cost['new']}р
                     </div>
                     <div className="add-in-cart-wrap"> 
                         <button
@@ -86,7 +73,7 @@ const ProductCard : React.FC<
                 </div>
             </div>
             {modal && <PhotoViewer 
-          img={products.photo[0]}
+          img={productObject.photo[0]}
           event={close}
         />}
         </div>

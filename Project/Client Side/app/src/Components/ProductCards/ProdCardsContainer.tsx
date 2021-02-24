@@ -3,9 +3,13 @@ import { connect } from 'react-redux'
 import ProductCard from './ProductCard'
 import { ProdObj, State } from '../../Types/types'
 import {
+    Action,
     ADD_REMOVE_PRODUCT_IN_CART,
+    REMOVE_SELECTED_FOR_VIEWING,  // selectForViewingCreator,
 } from '../../Redux/Actions/Actions'
+
 import { withRouter } from 'react-router'
+import { asyncGetProductForViewActionCreator } from '../../Redux/Actions/asyncActions'
 // import { render } from '@testing-library/react'
 
 // interface MapStateToProps {
@@ -15,34 +19,33 @@ import { withRouter } from 'react-router'
 // }
 
 const ProdCardsContainer : React.FC<{
-    props : ProdObj, 
-    dispatch : (action : {}) => void,
-    added : Array<string>
+    productObject : ProdObj, 
 }> = (
-    {props, dispatch, added} : {
-        props : ProdObj,
-        dispatch : (action : {}) => void,
-        added : Array<string>
+    {productObject, 
+        } : {
+            productObject : ProdObj,
     }
     ) => {
-    const Add_Remove_Action_Creater = (type : string, payload : string) : {} =>  ({
+    const Add_Remove_Action_Creater = (type : string, payload : any) : {} =>  ({
         type ,
         payload
     })
-    const addedProductFunction = (id : string) : void => {
-        const action = Add_Remove_Action_Creater(ADD_REMOVE_PRODUCT_IN_CART, id)
-        
-        dispatch(action)
-    }
-    const addedButton : string = added.indexOf(props.id) === -1 ? 'Add' : 'Remove'
 
     const mapStateToProps = (state : State) => ({
-        products : props,
-        addedProductFunction,
-        addedButton,
+            productObject,
+            added : [...state.selectedObjects.addedToCart.addedId],
     });
-    const mapDispatchToProps = {
-        dispatch
+    const mapDispatchToProps = (dispatch : (action: {type : string, payload : any}) => void) => {
+        return{
+            addedProductFunction : (obj : any) : void => {
+                const action : any = Add_Remove_Action_Creater(ADD_REMOVE_PRODUCT_IN_CART, obj);
+                dispatch(action)
+            },
+            selectForViewing : (id : string) => {
+                dispatch(asyncGetProductForViewActionCreator(id))
+                dispatch({type : REMOVE_SELECTED_FOR_VIEWING, payload: ''})
+            }
+        }
     };
     const ProductCardWrap = connect(mapStateToProps,mapDispatchToProps)(ProductCard);
     const ProductCardWrapWithRouter = withRouter(ProductCardWrap);

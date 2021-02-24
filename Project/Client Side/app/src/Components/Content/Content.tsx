@@ -12,6 +12,7 @@ import { AboutContainer,
         SliderContainer, 
         CatalogContainer,
     } from '../../Components'
+import RecommendedContainer from '../Recommended/RecommendedContainer';
 
 
 const Content : React.FC = ( ) => {
@@ -22,7 +23,7 @@ const Content : React.FC = ( ) => {
                 <Switch>
                     <Route exact path='/about' render={() =>  <AboutContainer/>} />
                     <Route exact path='/catalog' render={() =>  <CatalogContainer/>} />
-                    <Route exact path='/' render={() => [ <SliderContainer/>,  <ProdListContainer /> ]} />
+                    <Route exact path='/' render={() => [ <SliderContainer/>, <RecommendedContainer/>]} />
                     <Route exact path='/productViewer' render={() => <ProductViewerContainer />} />
                     <Route exact path='/payPage' render={() => <PayComponentContainer />} />
                 </Switch>

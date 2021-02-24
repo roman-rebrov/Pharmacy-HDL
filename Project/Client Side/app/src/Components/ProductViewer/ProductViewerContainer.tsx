@@ -13,7 +13,7 @@ import ProductViewer from './ProductViewer'
 
 const ProductViewerContainer : React.FC = () => {
     
-    const Add_Remove_Action_Creater = (type : string, payload : string) : {} =>  ({
+    const Add_Remove_Action_Creater = (type : string, payload : {}) : {} =>  ({
         type,
         payload
     })
@@ -21,14 +21,14 @@ const ProductViewerContainer : React.FC = () => {
     const mapStateToProps = (state : State) : any => {
         
         return({
-        selectedObject : {...state.productsBlock.viewPage},
-        addedId :[ ...state.productsBlock.addedToCart.addedId],
+        selectedObject : {...state.selectedObjects.viewPage},
+        addedId :[ ...state.selectedObjects.addedToCart.addedId],
     })};
     
     const mapDispatchToProps  = (dispatch : (action : {}) => void ) :  any => {
         return({
-            addedProductFunction : (id : string) : void => {
-                const action : {} = Add_Remove_Action_Creater(ADD_REMOVE_PRODUCT_IN_CART,  id)
+            addedProductFunction : (obj : any) : void => {
+                const action : {} = Add_Remove_Action_Creater(ADD_REMOVE_PRODUCT_IN_CART,  obj)
                 dispatch(action)
             }
         })

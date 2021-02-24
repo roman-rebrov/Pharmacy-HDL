@@ -17,13 +17,13 @@ const HeaderContainer : React.FC = () => {
     });
     const addRemoveActionCreator = (id : string) => ({
         type: ADD_REMOVE_PRODUCT_IN_CART, 
-        payload: id
+        payload: {id}
     });
 
     const mapStateToProps = ( state : State ) : addedType => {
         return {
-            added : [...state.productsBlock.addedToCart.addedId],
-            addedToCart : [...state.productsBlock.addedToCart.added],
+            added : [...state.selectedObjects.addedToCart.addedId],
+            addedToCart : [...state.selectedObjects.addedToCart.added],
         }
     };
     const mapDispatchToProps = ( dispatch : (action : Action) => void ) : any => { 

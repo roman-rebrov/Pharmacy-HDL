@@ -6,9 +6,16 @@ const HeaderNav : React.FC  = () => {
     return (
         <div className="block">
             <div className="header-nav">
-                    <Link to="/catalog" >
-                            Catalog
+                    <Link className="nav-header-catalog" to="/catalog" >
+                        <i className="fas fa-bars"></i>
+                        <div className="catalog-text">
+                                Catalog
+                        </div>
                     </Link>
+                    <div className="header-nav-topic-list">
+                        BADs
+                        Comolist
+                    </div>
             </div>
         </div>
     )

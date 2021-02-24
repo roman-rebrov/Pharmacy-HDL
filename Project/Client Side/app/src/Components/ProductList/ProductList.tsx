@@ -15,8 +15,8 @@ const ProductList : React.FC<any> = ( props ) => {
     };
     return (
         <div>
-            <div className="home-recommended-title title">
-                    recommended 
+            <div className="home-catalog-title title">
+                    Catalog 
             </div>
             { props.Products.list.length  === 0 &&  <Spinner/>} 
             <div className="product-list">
@@ -25,12 +25,8 @@ const ProductList : React.FC<any> = ( props ) => {
                         return (
                             <ProdCardContainer    
                                 key={item.id + i}
-                                props={item}
-                                dispatch= {props.dispatch}
-                                added={props.added}
-                            >
-                                {item}
-                            </ProdCardContainer>)
+                                productObject={item}
+                            />)
                     })
                 }
                 

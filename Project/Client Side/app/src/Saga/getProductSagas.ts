@@ -1,17 +1,22 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import { getProducts, getSlidesList } from '../API/api'
+import { getProductsAPI, getSlidesListAPI, getRecommendedListAPI, getProductForViewAPI } from '../API/api'
 import { 
     getSlideListActionCreator ,
-    getProductListActionCreator
+    getProductListActionCreator,
+    getRecommendedListActionCreator,
+    selectForViewingCreator,
+    Action
 } from '../Redux/Actions/Actions';
 import {
      ASYNC_GET_SLIDE_LIST ,
-     ASYNC_GET_PRODUCT_LIST
+     ASYNC_GET_PRODUCT_LIST,
+     ASYNC_GET_RECOMMENDED_LIST,
+     ASYNC_GET_PRODUCT_FOR_VIEW
 } from '../Redux/Actions/asyncActions';
 
 function* getSlidesWorker () {
     try{
-        const slideList =  yield call(getSlidesList, "/slides");
+        const slideList =  yield call(getSlidesListAPI, "/slides");
         yield put(getSlideListActionCreator(slideList));
     } catch (err) {
         yield put({type : err, });
@@ -20,16 +25,32 @@ function* getSlidesWorker () {
 
 function* getProductListWorker () {
     try{
-        const productList =  yield call(getProducts, "/");
+        const productList =  yield call(getProductsAPI, "/");
         yield put(getProductListActionCreator(productList));
     } catch (err) {
         yield put({type : err, });
     }
 }
-
+function*  getRecommendedListWorker(i : any){
+    try{
+        const list =  yield call(getRecommendedListAPI, "/recommendedlist");
+        yield put( getRecommendedListActionCreator(list));
+    } catch (err) {
+        yield put({type : err, });
+    }
+}
+function*  getProductForViewWorker(props : Action){
+    try{
+        const obj =  yield call(getProductForViewAPI, "/product" + "/" + props.payload);
+        yield put( selectForViewingCreator(obj));
+    } catch (err) {
+        yield put({type : err, });
+    }
+}
 
 export function* watcher () {
         yield takeEvery(ASYNC_GET_SLIDE_LIST,  getSlidesWorker);
         yield takeEvery(ASYNC_GET_PRODUCT_LIST,  getProductListWorker);
-        
+        yield takeEvery(ASYNC_GET_RECOMMENDED_LIST,  getRecommendedListWorker);
+        yield takeEvery(ASYNC_GET_PRODUCT_FOR_VIEW,  getProductForViewWorker);
 }
