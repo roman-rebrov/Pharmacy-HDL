@@ -9,30 +9,25 @@ import PhotoViewer from '../Modals/PhotoViewer'
 
 
 const ProductCard : React.FC<{productObject : ProdObj, 
-    // addedButton : string,
     addedProductFunction : (id : any) => void,
     added: Array<string>,
-    selectForViewing: (id : string) => void
 }> =  ( props )  => {
 
     let  {productObject,
             added,
             addedProductFunction,
-            selectForViewing
     } : {
             added: Array<string>,
             productObject : any, 
             addedProductFunction : (id : any) => void,
-            selectForViewing: (id : string) => void
-        }  =  props;
+        }  
+        =  props;
     const addedButton : string = added.indexOf(productObject.id) === -1 ? 'Add' : 'Remove'
     let [modal, setModal]  = useState(false)
     let [button, setButton] = React.useState(addedButton);
     
-    const event = (id : string) => {
-        selectForViewing(id)
-    };
-    const openModal = async() => {
+
+    const openModal = () => {
         setModal(true);
     };
     const close = () => {
@@ -45,7 +40,7 @@ const ProductCard : React.FC<{productObject : ProdObj,
         return (
             <div className='Products'> 
             <div className="product-card">
-                <Link to='/productViewer' onClick={()=> {event(productObject.id)}}>
+                <Link to={'/productViewer/product/' + productObject.id} >
                     <div className="product-name">
                             {productObject.name}
                     </div>

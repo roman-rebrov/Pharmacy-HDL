@@ -14,7 +14,6 @@ const HeaderNav : React.FC  = () => {
                     </Link>
                     <div className="header-nav-topic-list">
                         BADs
-                        Comolist
                     </div>
             </div>
         </div>

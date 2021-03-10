@@ -5,7 +5,8 @@ import {
     getProductListActionCreator,
     getRecommendedListActionCreator,
     selectForViewingCreator,
-    Action
+    Action,
+    PROCESSING
 } from '../Redux/Actions/Actions';
 import {
      ASYNC_GET_SLIDE_LIST ,
@@ -43,6 +44,7 @@ function*  getProductForViewWorker(props : Action){
     try{
         const obj =  yield call(getProductForViewAPI, "/product" + "/" + props.payload);
         yield put( selectForViewingCreator(obj));
+        yield put( {type: PROCESSING, payload : false} )
     } catch (err) {
         yield put({type : err, });
     }

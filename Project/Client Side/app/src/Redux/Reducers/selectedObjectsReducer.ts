@@ -47,7 +47,6 @@ const selectedObjectsReducer = (selected : any = selectedInit,  action :| Action
             });
 
             case  SELECTED_FOR_VIEWING :
-
                 return({
                     ...selected,
                     viewPage: { ...action.payload }

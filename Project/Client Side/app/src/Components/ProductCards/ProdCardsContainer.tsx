@@ -40,10 +40,6 @@ const ProdCardsContainer : React.FC<{
             addedProductFunction : (obj : any) : void => {
                 const action : any = Add_Remove_Action_Creater(ADD_REMOVE_PRODUCT_IN_CART, obj);
                 dispatch(action)
-            },
-            selectForViewing : (id : string) => {
-                dispatch(asyncGetProductForViewActionCreator(id))
-                dispatch({type : REMOVE_SELECTED_FOR_VIEWING, payload: ''})
             }
         }
     };

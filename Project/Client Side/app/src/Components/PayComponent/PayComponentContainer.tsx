@@ -28,10 +28,6 @@ const PayComponentContainer : React.FC = ()  => {
     };
     const mapDispatchToProps = (dispatch : (action : Action) => void) => {
         return({
-            viewer : (id : any) => {
-                dispatch(asyncGetProductForViewActionCreator(id))
-                dispatch({type : REMOVE_SELECTED_FOR_VIEWING, payload: ''})
-            },
             remove : (id : string) => { 
                 dispatch(removeActionCreator(id));
             },

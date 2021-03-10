@@ -4,7 +4,7 @@ export const REMOVE_SELECTED_FOR_VIEWING : string = 'REMOVE_SELECTED_FOR_VIEWING
 export const GET_PRODUCTS : string = 'GET_PRODUCTS'
 export const GET_SLIDE_LIST : string = 'GET_SLIDE_LIST'
 export const GET_RECOMMENDED_LIST : string = 'GET_RECOMMENDED_LIST'
-
+export const PROCESSING : string = 'PROCESSING'
 
 export type Adding_Action_Type = {
     type : typeof ADD_REMOVE_PRODUCT_IN_CART, 

@@ -1,18 +1,22 @@
 import React, { useState } from 'react'
-import PhotoViewer from '../Modals/PhotoViewer';
 import '../../SASS/ProductViewer.sass'
+import { useParams } from 'react-router-dom'
+import PhotoViewer from '../Modals/PhotoViewer';
 import Spinner from '../Spinner';
 
 const ProductViewer : React.FC  = (props : any) => {
-    // if (!props.selectedObject.id) {
-        // window.location.href = "http://localhost:3000/";
-    // }
+    
+    let paramsId : {id : string} = useParams();
+    if (props.process === false && props.selectedObject.id !==  paramsId.id) {
+        console.log(paramsId.id);
+        props.selectForViewing(paramsId.id);
+    }
+    
 
     const { id, name, discribes, photo, cost } = props.selectedObject;
     let buttonAdded = props.addedId.indexOf(id) === -1 ? 'Add' : 'Remove';
 
     let [modal, setModal]  = useState(false);
-    // let [button, setButton] = React.useState(props.addedButton);
 
     const openModal = () => {
         setModal(true)
@@ -21,17 +25,11 @@ const ProductViewer : React.FC  = (props : any) => {
         setModal(false)
     };
 
-    const Add_Remove_Product = (event : MouseEvent) => {
-        // const obj = {
-        //     id : id,
-        //     name : name,
-        //     cost : cost.new
-        // }
-        props.addedProductFunction(props.selectedObject)
-        // button = button === 'Add' ? 'Remove' : 'Add'
-        // setButton(button)
-    };
+    const Add_Remove_Product = () => {
 
+        props.addedProductFunction(props.selectedObject)
+    };
+    
     return (
         <div>
             {!props.selectedObject.id ?  <Spinner/> : 
@@ -48,7 +46,7 @@ const ProductViewer : React.FC  = (props : any) => {
                         </div>
                         <div className="product-view-add-button">
                             <button
-                                        onClick = {(e : any) => Add_Remove_Product(e)}
+                                        onClick = {(e : any) => Add_Remove_Product()}
                                         >
                                     {buttonAdded}
                             </button>
