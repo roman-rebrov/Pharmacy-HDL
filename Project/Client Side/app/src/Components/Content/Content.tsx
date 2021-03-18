@@ -13,11 +13,8 @@ import { AboutContainer,
 import RecommendedContainer from '../Recommended/RecommendedContainer';
 
 
-
 const Content : React.FC = ( ) => {
     
-
-
     return ( 
         <div className= "content-main-container" >
 
