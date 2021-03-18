@@ -10,7 +10,7 @@ const SliderContainer : React.FC = () => {
 
     const mapStateToProps = (state : State) : {} => {
         return({
-            slides : [...state.slider]
+            slides : [...state.slider],
         })
     };
     const mapDispatchToProps = (dispatch : (action : {type : string}) => void) => {

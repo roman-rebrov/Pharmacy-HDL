@@ -15,7 +15,7 @@ import {
      ASYNC_GET_PRODUCT_FOR_VIEW
 } from '../Redux/Actions/asyncActions';
 
-function* getSlidesWorker () {
+function* getSlidesWorker () : any  {
     try{
         const slideList =  yield call(getSlidesListAPI, "/slides");
         yield put(getSlideListActionCreator(slideList));
@@ -24,25 +24,25 @@ function* getSlidesWorker () {
     }
 }
 
-function* getProductListWorker () {
+function* getProductListWorker () : any {
     try{
-        const productList =  yield call(getProductsAPI, "/");
+        const productList   =  yield call(getProductsAPI, "/");
         yield put(getProductListActionCreator(productList));
     } catch (err) {
         yield put({type : err, });
     }
 }
-function*  getRecommendedListWorker(i : any){
+function*  getRecommendedListWorker(i : any) : any{
     try{
-        const list =  yield call(getRecommendedListAPI, "/recommendedlist");
+        const list  =  yield call(getRecommendedListAPI, "/recommendedlist");
         yield put( getRecommendedListActionCreator(list));
     } catch (err) {
         yield put({type : err, });
     }
 }
-function*  getProductForViewWorker(props : Action){
+function*  getProductForViewWorker(props : Action) : any{
     try{
-        const obj =  yield call(getProductForViewAPI, "/product" + "/" + props.payload);
+        const obj  =  yield call(getProductForViewAPI, "/product" + "/" + props.payload);
         yield put( selectForViewingCreator(obj));
         yield put( {type: PROCESSING, payload : false} )
     } catch (err) {

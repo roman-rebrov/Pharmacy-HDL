@@ -1,8 +1,10 @@
 import  axios from 'axios' 
 
-const instance = axios.create({
+const instance = axios.create(
+     {
      baseURL : "http://localhost:3219",
-});
+}
+);
 
 export const getProductsAPI = async(props : string) => {
      try{

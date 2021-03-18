@@ -17,8 +17,6 @@ const ProductViewerContainer : React.FC = () => {
     })
 
     const mapStateToProps = (state : State, d : any) : any => {
-        console.log(state.process);
-        console.log(state.selectedObjects.viewPage);
         
         return({
         selectedObject :  {...state.selectedObjects.viewPage},   

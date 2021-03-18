@@ -71,7 +71,7 @@ app.get("/product/:id", cors(), (req, res) => {
         console.log(productObject);
 
         res.send(productObject );
-    }, 2000)
+    }, 1000)
 });
 
 app.get("/slides", cors(), (req, res) => {
@@ -85,7 +85,7 @@ app.get("/slides", cors(), (req, res) => {
 app.get("/recommendedlist", cors(),(req, res) => {
     setTimeout(() => {
     res.send(recommendedlist.list);
-        }, 5000)
+        }, 2500)
 });
 // ------------------------------------------------
 app.get("/newUser", cors(),  (req,res) => {
