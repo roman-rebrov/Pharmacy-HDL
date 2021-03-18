@@ -12,6 +12,9 @@ import { AboutContainer,
     } from '../../Components'
 import RecommendedContainer from '../Recommended/RecommendedContainer';
 
+for(var i = 0; i < 5; i++){
+    console.log(i)
+};
 
 const Content : React.FC = ( ) => {
     

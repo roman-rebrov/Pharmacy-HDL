@@ -18,7 +18,6 @@ const Slider : React.FC  = (props : any) => {
     
     const sliderInterval = (index : number) => {
         let lengthSlide = props.slides.length;
-        console.log(lengthSlide);
         if(index != -1) {
             let calc = index * 100;
             setSlideMoving(-calc);
@@ -27,7 +26,6 @@ const Slider : React.FC  = (props : any) => {
 
             setSlideMoving((cur : number) => {
 
-                console.log(cur + ":" + lengthSlide *-100  );
                 if (cur <= lengthSlide *-100 + 100 ){
                     return  0;
                 }else {
