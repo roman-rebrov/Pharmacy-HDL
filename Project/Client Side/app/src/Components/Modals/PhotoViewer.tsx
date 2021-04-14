@@ -2,24 +2,27 @@ import React from 'react'
 import '../../SASS/modal-photo.sass'
 
 const PhotoViewer : React.FC<{img : string, event : ()=>void}> = ({img, event} ) => {      // : {img : string, event : () => void}
-    const close = (e : React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        event()
+    const close = () => {
+        event();
     }
     return ( 
         <div className='modal-photo-viewer-wrap'
-        onClick={(e) => {
-            // close(e)
-            // e.stopPropagation()
+        onClick={() => {
+            close();
             }}
         >
             <div className="modal-window">
                 <div className="close-modal"
-                    onClick={(e) => {
-                        close(e)
+                    onClick={() => {
+                        close();
                     }}
                 >&times;
                 </div>
-                <div className="">
+                <div className=""
+                    onClick={(e : React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+                            e.stopPropagation();
+                    }}
+                >
                     <img src={img} alt=""/>
                 </div>
             </div>
@@ -27,4 +30,4 @@ const PhotoViewer : React.FC<{img : string, event : ()=>void}> = ({img, event} )
     )
 }
 
-export default PhotoViewer
+export default PhotoViewer;

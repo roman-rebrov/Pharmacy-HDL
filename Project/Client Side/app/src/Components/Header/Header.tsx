@@ -106,7 +106,7 @@ const Header : React.FC<any> = (props) => {
                                      <div className="added-products--fast-view_container"> 
                                             <div className="added-products--fast-view_wrap">
                                                 {
-                                                    addedToCart.map((items : any, i : number) => {
+                                                    addedToCart.map((items : any, i : number) => { 
                                                                 return (<div key={items.id} className="added-product">
                                                                             <div className="fast-view--name">
                                                                                 {items.name}

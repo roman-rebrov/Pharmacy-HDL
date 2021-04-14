@@ -10,14 +10,13 @@ import { AboutContainer,
         SliderContainer, 
         CatalogContainer,
     } from '../../Components'
-import RecommendedContainer from '../Recommended/RecommendedContainer';
+import RecommendedContainer from '../Recommended/RecommendedContainer'
 
 
 const Content : React.FC = ( ) => {
     
     return ( 
         <div className= "content-main-container" >
-
             <div className="content-child-container  block" >
                 <Switch>
                     <Route  path='/about' render={() =>  <AboutContainer/>} />
@@ -31,4 +30,4 @@ const Content : React.FC = ( ) => {
     )
 };
 
-export default Content
+export default Content;

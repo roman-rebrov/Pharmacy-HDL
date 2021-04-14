@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {  ADD_REMOVE_PRODUCT_IN_CART, PROCESSING, REMOVE_SELECTED_FOR_VIEWING } from '../../Redux/Actions/Actions'
+import {  ADD_REMOVE_PRODUCT_IN_CART, REMOVE_SELECTED_FOR_VIEWING } from '../../Redux/Actions/Actions'
 import { State } from '../../Types/types';
 import ProductViewer from './ProductViewer'
 import { withRouter } from 'react-router'
@@ -16,10 +16,15 @@ const ProductViewerContainer : React.FC = () => {
         payload
     })
 
-    const mapStateToProps = (state : State, d : any) : any => {
+    const mapStateToProps = (state : State) : any => {
         
         return({
-        selectedObject :  {...state.selectedObjects.viewPage},   
+        selectedObject :  {
+            id:  state.selectedObjects.viewPage.id,
+            name: state.selectedObjects.viewPage.name,
+            photo: state.selectedObjects.viewPage.photo,
+            cost: state.selectedObjects.viewPage.cost
+        },   
         addedId :[ ...state.selectedObjects.addedToCart.addedId],
         process: state.process,
     })};
@@ -33,7 +38,6 @@ const ProductViewerContainer : React.FC = () => {
             selectForViewing : (id : string) => {
                 dispatch({type : REMOVE_SELECTED_FOR_VIEWING, payload: ''})
                 dispatch(asyncGetProductForViewActionCreator(id))
-                dispatch({type: PROCESSING, payload: true})
             }
         })
 

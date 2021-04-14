@@ -41,7 +41,11 @@ export type State = {
             added : eddedType[]
         },
         viewPage : {
-            id : string
+            id : string,
+            name: string,
+            discribes: string,
+            cost: {},
+            photo: string
         },
     }
 };

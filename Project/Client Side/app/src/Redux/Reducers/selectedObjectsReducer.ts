@@ -1,4 +1,4 @@
-import { ADD_REMOVE_PRODUCT_IN_CART, SELECTED_FOR_VIEWING, Action, REMOVE_SELECTED_FOR_VIEWING } from "../Actions/Actions"
+import { ADD_REMOVE_PRODUCT_IN_CART,  SELECTED_FOR_VIEWING,   Action,  REMOVE_SELECTED_FOR_VIEWING } from "../Actions/Actions"
 
 const addedToCart = {
     addedId : [],
@@ -10,7 +10,7 @@ const selectedInit : any = {
     addedToCart
 }
 
-const selectedObjectsReducer = (selected : any = selectedInit,  action :| Action) : any => {
+const selectedObjectsReducer = (selected : any = selectedInit,  action : Action) : any => {
       
     switch(action.type) {
 

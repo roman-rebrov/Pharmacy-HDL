@@ -1,33 +1,37 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../../SASS/ProductViewer.sass'
-import { useParams } from 'react-router-dom'
-import PhotoViewer from '../Modals/PhotoViewer';
-import Spinner from '../Spinner';
+import { useParams, Switch, Route, Link } from 'react-router-dom'
+import PhotoViewer from '../Modals/PhotoViewer'
+import Spinner from '../Spinner'
+import ProductDescriptionContainer from './DescriptionComponent/ProductDescriptionContainer'
+
 
 const ProductViewer : React.FC  = (props : any) => {
     
     let paramsId : {id : string} = useParams();
-    if (props.process === false && props.selectedObject.id !==  paramsId.id) {
-        console.log(paramsId.id);
-        props.selectForViewing(paramsId.id);
-    }
     
+    useEffect(() => {
+        if( props.selectedObject.id !==  paramsId.id ){
+            props.selectForViewing(paramsId.id);
+        }
+    }, []);
+     
 
-    const { id, name, discribes, photo, cost } = props.selectedObject;
+    const { id, name, photo, cost } = props.selectedObject;
     let buttonAdded = props.addedId.indexOf(id) === -1 ? 'Add' : 'Remove';
 
     let [modal, setModal]  = useState(false);
 
     const openModal = () => {
-        setModal(true)
+        setModal(true);
     };
     const close = () => {
-        setModal(false)
+        setModal(false);
     };
 
     const Add_Remove_Product = () => {
 
-        props.addedProductFunction(props.selectedObject)
+        props.addedProductFunction(props.selectedObject);
     };
     
     return (
@@ -46,7 +50,7 @@ const ProductViewer : React.FC  = (props : any) => {
                         </div>
                         <div className="product-view-add-button">
                             <button
-                                        onClick = {(e : any) => Add_Remove_Product()}
+                                            onClick = {() => Add_Remove_Product()}
                                         >
                                     {buttonAdded}
                             </button>
@@ -55,10 +59,16 @@ const ProductViewer : React.FC  = (props : any) => {
                 </div>
             </div>
             }
-
-            <div className="product-view-discribes">
-                        {discribes}
+            <div className="description-container">
+                <div className="product-view-tabs-wrapper">
+                    <div className="product-view-tabs-btns">
+                       Describes
+                    </div>
                 </div>
+                <ProductDescriptionContainer/>
+                <div className="product-view-discribes">
+                </div>
+            </div>
 
             {modal && <PhotoViewer 
           img={photo[0]}
