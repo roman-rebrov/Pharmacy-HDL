@@ -3,9 +3,14 @@
 .flex 
     display: flex
     flex-direction: row
-    
+
+.pay-component-title
+    font-size: 21px 
+    color: #ffffff85
+    padding: .5em 0  1em
 .order-objects
     &-wrap
+        padding: 0 0 0 1em
     &_item
         @extend .flex
         width: 70%
@@ -23,3 +28,35 @@
         &:hover
             background-color: #bdd1d3
             color: black
+.pay-component-cost-block
+    display: flex
+
+.pay-component-costOfElement
+    padding: 0 2em
+
+.pay
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    padding: 2em 2em 0 0 
+.total-cost
+    padding:  1em  0     1em 
+    border-top: solid .8px grey
+
+.orderButton
+    button
+        width: 8rem
+        height: 2rem
+        background: #d0e5eb
+        border: none
+        letter-spacing: 2px
+        font-size: 18px
+
+// Spinner
+.spinner-wrap
+    position: fixed
+    background-color: #0000003f
+    left: 0
+    right: 0
+    bottom: 0
+    top: 0

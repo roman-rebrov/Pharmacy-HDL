@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { MouseEventHandler } from 'react'
 import '../../SASS/ProductCard.sass'
 import { ProdObj } from '../../Types/types'
 import {Link} from 'react-router-dom'
@@ -23,7 +23,7 @@ const ProductCard : React.FC<{productObject : ProdObj,
         }  
         =  props;
     const addedButton : string = added.indexOf(productObject.id) === -1 ? 'Add' : 'Remove'
-    let [modal, setModal]  = useState(false)
+    let [modal, setModal]  = React.useState(false)
     let [button, setButton] = React.useState(addedButton);
     
 
@@ -58,7 +58,7 @@ const ProductCard : React.FC<{productObject : ProdObj,
                     </div>
                     <div className="add-in-cart-wrap"> 
                         <button
-                            onClick = {(e : any) => Add_Remove_Product(e)}
+                            onClick = {(e : any) : void =>{ Add_Remove_Product(e)}}
                             >
                         {
                             button

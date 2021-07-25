@@ -46,6 +46,16 @@ export const getRecommendedListAPI = async(props : string) => {
                console.log(err);
           }
 }
+
+export const newOrderAPI = async( props : any ) => {
+     try {
+          return await instance.post(props)
+               .then( response => response.data )
+               .catch( err => console.log(err) )
+     } catch (err) {
+          console.log(err);
+     }
+}
 // export const getProducts = async() => {
 //      let req = await fetch('https://jsonplaceholder.typicode.com/todos/1') as any;
 //      let data : any = await req.then((response : any) =>{ return response.json()} );

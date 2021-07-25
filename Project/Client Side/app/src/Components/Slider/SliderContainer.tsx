@@ -17,7 +17,7 @@ const SliderContainer : React.FC = () => {
         return({
                 getSlides: () => {
                     dispatch({type : ASYNC_GET_SLIDE_LIST})
-                    // dispatch({type : ASYNC_GET_SLIDE_LIST, payload: [...slides.list]})
+                    // dispatch({type : ASYNC_GET_SLIDE_LIST, payload: [...slides.list]}) 
                 }
         })
     };

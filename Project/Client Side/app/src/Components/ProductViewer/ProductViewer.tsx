@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React  from 'react'
 import '../../SASS/ProductViewer.sass'
 import { useParams, Switch, Route, Link } from 'react-router-dom'
 import PhotoViewer from '../Modals/PhotoViewer'
@@ -10,7 +10,7 @@ const ProductViewer : React.FC  = (props : any) => {
     
     let paramsId : {id : string} = useParams();
     
-    useEffect(() => {
+    React.useEffect(() => {
         if( props.selectedObject.id !==  paramsId.id ){
             props.selectForViewing(paramsId.id);
         }
@@ -20,7 +20,7 @@ const ProductViewer : React.FC  = (props : any) => {
     const { id, name, photo, cost } = props.selectedObject;
     let buttonAdded = props.addedId.indexOf(id) === -1 ? 'Add' : 'Remove';
 
-    let [modal, setModal]  = useState(false);
+    let [modal, setModal]  = React.useState(false);
 
     const openModal = () => {
         setModal(true);

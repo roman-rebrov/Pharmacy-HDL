@@ -1,7 +1,9 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
-import '../../SASS/PayComponent.sass'
+import '../../SASS/PayComponent.sass';
 import { ProdObj } from '../../Types/types';
+import OrderForm from '../Modals/OrderForm';
+import Spinner from '../Spinner';
 
 
 
@@ -15,9 +17,31 @@ const PayComponent : React.FC  = (props : any) => {
         remove(id);
     };
 
+    const [ orderSendProssecc, setOrderSendProssecc ] = React.useState(false)
+    let [modalWindow, setModalWindow] = React.useState(false);
+
+    const openModal = () => {
+        if (props.addedToCart.length === 0) {
+            
+        }else {
+            setModalWindow(true);
+        }
+        
+        // console.log(props.addedToCart.length);
+        
+    }
+
+    const closeModal = () => {
+        setModalWindow(false)
+    }
+
     return (
         <div>
-            Pay Component
+            <div className="pay-component-title">
+                <span >
+                    Your order
+                </span>
+            </div>
             <div className="order-objects-wrap">
                 <div className="order-objects">
                     { 
@@ -28,36 +52,42 @@ const PayComponent : React.FC  = (props : any) => {
                                         {el.name}
                                     </div>
                                 </Link>
-                                <div className="">
-                                    {el.cost.new}
+                                <div className='pay-component-cost-block'>
+
+                                    <div className="pay-component-costOfElement">
+                                        {el.cost.new}
+                                    </div>
+                                    <div 
+                                        className="order-objects-btn-remove"
+                                        onClick={() => {
+                                            event(el.id)
+                                        }}
+                                        >
+                                        &times;
+                                    </div>
                                 </div>
-                                <div 
-                                    className="order-objects-btn-remove"
-                                    onClick={() => {
-                                        event(el.id)
-                                    }}
-                                >
-                                    &times;
-                                </div>
+
                             </div>
                             )
                         )
                     }
                 </div>
             </div>
-            <div className="pay" style={{
-                display: "flex",
-                justifyContent: "flex-end"
-            }}>
-                <div className="total-cost" style={{
-
-                }}>
-                    { total }
+            <div className="pay" >
+                <div className="total-cost" >
+                    <span>total: </span>
+                    <span style={{color: "white"}}>
+                        { total }
+                    </span>
                 </div>
-                <div className="order">
-                    <button>Order</button>
+                <div className="orderButton">
+                    <button onClick={() => { openModal() }}> { props.addedToCart.length === 0? 'Empty' :  'Buy' }</button>
                 </div>
             </div>
+
+            {modalWindow && <OrderForm event = {closeModal}  pross={setOrderSendProssecc}/>}
+            { orderSendProssecc && <Spinner/>}
+
         </div>
     )
 }

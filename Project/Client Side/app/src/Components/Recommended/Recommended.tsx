@@ -3,6 +3,7 @@ import { ProdObj } from '../../Types/types';
 import Spinner from '../Spinner';
 import ProdCardContainer from '../ProductCards/ProdCardsContainer'
 import '../../SASS/Recommended.sass'
+import { TargetElement } from '@testing-library/user-event';
 
 const Recommended : React.FC<{list : ProdObj[], getRecommendedList : () => void}> = (props) => {
 
@@ -12,8 +13,10 @@ const Recommended : React.FC<{list : ProdObj[], getRecommendedList : () => void}
         getRecommendedList()
     }
 
+
     return (
         <div className='recommended-container'>
+
             <div className="recommended-title title">
                     Recommended
             </div>

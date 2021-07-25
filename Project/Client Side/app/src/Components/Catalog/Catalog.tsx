@@ -4,7 +4,7 @@ import { ProdListContainer } from '..';
 const Catalog = () => {
     return (
         <div>
-            <div className="">
+            <div className="catalog-wrap">
                     
             </div>
                 <ProdListContainer /> 

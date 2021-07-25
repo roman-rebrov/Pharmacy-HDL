@@ -10,9 +10,14 @@ const ProductList : React.FC<any> = ( props ) => {
         props.dispatch({ type: ASYNC_GET_PRODUCT_LIST });
     };
     
-    if(props.Products.list.length === 0){
-        getProducts()
-    };
+    React.useEffect(() => {
+        
+        if(props.Products.list.length === 0){
+            getProducts()
+        };
+
+    })
+
     return (
         <div>
             <div className="home-catalog-title title">

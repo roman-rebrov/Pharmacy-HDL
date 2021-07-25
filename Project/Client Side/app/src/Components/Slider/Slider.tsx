@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 // import { getSlidesList } from '../../API/api'
 import Spinner from '../Spinner'
@@ -7,11 +7,11 @@ interface Props {
     slides: {}[]
 }
 
-const Slider : React.FC  = (props : any) => {
-    let [ slideMoving, setSlideMoving ] = useState(0);
-    let [ dotIndex, setDotIndex] = useState(0);
+const Slider : React.FC<any>  = (props ) => {
+    let [ slideMoving, setSlideMoving ] = React.useState(0);
+    let [ dotIndex, setDotIndex] = React.useState(0);
 
-    const getSlideList = () => {
+    const getSlideList = () => { 
         props.getSlides();
     };
     
@@ -36,16 +36,19 @@ const Slider : React.FC  = (props : any) => {
 
     };
     
-    useEffect(() => {
+    React.useEffect(() => {
             let intervalSlider = setInterval(() => {
                 sliderInterval(-1)
             }, 6000);
         return () => {return clearInterval(intervalSlider)};
     }, [props.slides.length])
 
-   if( props.slides.length === 0){ 
-        getSlideList()
-     };
+    React.useEffect(() => {
+
+        if( props.slides.length === 0){ 
+             getSlideList()
+          };
+    })
     
 
      

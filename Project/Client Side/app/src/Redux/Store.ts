@@ -7,7 +7,7 @@ import { rootWatcher } from '../Saga'
 const sagaMiddleware = createSagaMiddleare();
 const Store = createStore(rootReducer,  applyMiddleware(sagaMiddleware));
 sagaMiddleware.run(rootWatcher);
-
+ 
 export default Store;
 
 

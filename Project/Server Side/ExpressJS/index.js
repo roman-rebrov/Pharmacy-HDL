@@ -44,8 +44,24 @@ function checkUser(){
     return usersBase;
 };
 
+function newOrderCreater(data) {
+    let newOrderObject = {
+        personal: {},
+        location: {},
+        products: []
+    }
+
+
+    return (newOrderObject)
+};
+
+app.post("/newOrder", cors(), (req, res) => {
+        let result = newOrderCreater(req.body);
+        res.json(result);
+});
+
 app.post("/test", cors(), (req, res) => {
-    const data = req.body
+    const data = req.body;
     console.log(req.body.p);
     res.json({
         users : UserBase,
@@ -53,8 +69,8 @@ app.post("/test", cors(), (req, res) => {
         status : DB,
         text : 'Kick!',
         back : req.body
-    })
-})
+    });
+});
 // ------------------------------------------------
 app.get("/", cors(), (req, res) => {
     console.log("OK");
@@ -139,3 +155,5 @@ prodArray = productsFabrice(10)
 // productList.list.push(...prodArray)
 
 // ======================================
+
+// 824@citycarrier.ru

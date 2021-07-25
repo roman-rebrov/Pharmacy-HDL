@@ -4,17 +4,13 @@ import '../../SASS/Header.sass'
 import HeaderNavContainer from './HeaderNavContainer'
 
 const Header : React.FC<any> = (props) => {
-    let [ popup, setPopup ] : any = React.useState(false);
-    let { addedToCart, addRemove} = props;                      //  products, added ,
+    let [ popup, setPopup ] : [boolean, (i : any) => void] = React.useState(false);
+    let { addedToCart, addRemove} = props;                     
     
-    const total = (prod: [{cost : any}]) : number => {
+    const total = (prod: [{cost : {new : string}}]) : number => {
         let total : number = 0;
         prod.forEach((item : any, i : number) => {
-            // for(let i : number = 0; i <  added.length; i++) {
-                // if ( item.id === added[i] ){
                     total += Number(item.cost.new)
-                // }
-            // } 
         })
         return total
     };
@@ -46,9 +42,14 @@ const Header : React.FC<any> = (props) => {
                 </nav>
                 <div className="header-phone">
                         <div className="">
+
+                                
                         <span>
-                        <i className="fas fa-phone"></i>
-                            +1 212-253-8686
+                        <a href="tel: +1 212-253-8686" style={{textDecoration: "underline", textDecorationStyle: "dotted", textDecorationColor: "grey", color: "inherit"}}>
+
+                            <i className="fas fa-phone"></i>
+                                +1 212-253-8686
+                        </a>
                         </span>
                     </div>
                 </div>
