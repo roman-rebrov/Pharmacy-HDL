@@ -1,7 +1,7 @@
 import React from 'react'
-import { ProdListContainer } from '..';
+import { ProdListContainer } from '..'
 
-const Catalog = () => {
+const Catalog : React.FC = () => {
     return (
         <div>
             <div className="catalog-wrap">

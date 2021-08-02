@@ -1,3 +1,5 @@
+import { ProdObj, ProductListType, SliderType } from "../../Types/types"
+
 export const ADD_REMOVE_PRODUCT_IN_CART : string = 'ADD_REMOVE_PRODUCT_IN_CART'
 export const SELECTED_FOR_VIEWING : string = 'SELECTED_FOR_VIEWING'
 export const REMOVE_SELECTED_FOR_VIEWING : string = 'REMOVE_SELECTED_FOR_VIEWING'
@@ -9,29 +11,48 @@ export const PROCESSING : string = 'PROCESSING'
 export type Adding_Action_Type = {
     type : typeof ADD_REMOVE_PRODUCT_IN_CART, 
     payload : string
-};
-
+}
 export type Action = {
     type : string,
     payload : any
 }
 
-export const selectForViewingCreator = ( id : string) => ({
+interface IProductListActionCreator {
+    type: string;
+    payload: void | ProductListType;
+}
+
+interface ISlideListActionCreator  {
+    type: string;
+    payload:  void | SliderType[];
+}
+
+interface IRecommendedListActionCreator  {
+    type: string;
+    payload:  void | ProdObj[];
+}
+
+interface IForViewingCreator {
+    type: string;
+    payload:  void | ProdObj;
+}
+
+export const selectForViewingCreator = ( obj : void | ProdObj ) : IForViewingCreator=> ({
     type : SELECTED_FOR_VIEWING,
-    payload : id
+    payload : obj
 })
 
-export const getSlideListActionCreator = (slides : {list : []}) : Action =>( {
+export const getSlideListActionCreator = (slides : any) : ISlideListActionCreator =>( {
     type : GET_SLIDE_LIST, 
-    payload: [...slides.list]
+    payload: slides.list
 })
 
-export const getProductListActionCreator = (products : {}) : Action =>( {
+export const getProductListActionCreator = (products : void | ProductListType) : IProductListActionCreator => ( {
     type : GET_PRODUCTS, 
-    payload: {...products}
+    payload: products
 })
 
-export const getRecommendedListActionCreator = (recommended : []) : Action => ( {
+export const getRecommendedListActionCreator = (recommended : void |  ProdObj[]) : IRecommendedListActionCreator => ( {
     type: GET_RECOMMENDED_LIST,
-    payload: [...recommended]
+    payload: recommended
 } )

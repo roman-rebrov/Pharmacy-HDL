@@ -5,7 +5,7 @@ import {
      Action,
 } from '../Actions/Actions'
 import productsBlockInit from '../initialState';
-import {ProdObj, ProductList, productsBlockType} from '../../Types/types'
+import {ProdObj, ProductListType, productsBlockType} from '../../Types/types'
  
  
  const ProductListReducer = (productsBlock : productsBlockType = productsBlockInit,  action : Action | {type:  string, payload : {list : {}[]}}) : productsBlockType => {

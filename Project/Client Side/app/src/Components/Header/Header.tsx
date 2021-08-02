@@ -1,20 +1,30 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import '../../SASS/Header.sass'
+import { addedType } from '../../Types/types'
 import HeaderNavContainer from './HeaderNavContainer'
 
-const Header : React.FC<any> = (props) => {
-    let [ popup, setPopup ] : [boolean, (i : any) => void] = React.useState(false);
+
+interface IProps {
+    added : string[];
+    addedToCart : addedType[];
+    addRemove: ( id : string ) => void;
+    remove: ( id : string ) => void;
+    totalCost: (cost : number) => void;
+}
+
+const Header : React.FC<IProps> = (props) => {
+    let [ popup, setPopup ] = React.useState<boolean>(false);
     let { addedToCart, addRemove} = props;                     
     
-    const total = (prod: [{cost : {new : string}}]) : number => {
+    const total = (prod: addedType[]) : number => {
         let total : number = 0;
-        prod.forEach((item : any, i : number) => {
+        prod.forEach((item : addedType, i : number) => {
                     total += Number(item.cost.new)
         })
         return total
     };
-    const event = (id : string) => {
+    const event = (id : string) : void => {
         addRemove(id);
     }
     return (
@@ -107,7 +117,7 @@ const Header : React.FC<any> = (props) => {
                                      <div className="added-products--fast-view_container"> 
                                             <div className="added-products--fast-view_wrap">
                                                 {
-                                                    addedToCart.map((items : any, i : number) => { 
+                                                    addedToCart.map((items : addedType, i : number) :  JSX.Element => { 
                                                                 return (<div key={items.id} className="added-product">
                                                                             <div className="fast-view--name">
                                                                                 {items.name}

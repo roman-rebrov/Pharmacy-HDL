@@ -1,23 +1,38 @@
+import { addedType } from "../../Types/types";
 import { ADD_REMOVE_PRODUCT_IN_CART,  SELECTED_FOR_VIEWING,   Action,  REMOVE_SELECTED_FOR_VIEWING } from "../Actions/Actions"
 
-const addedToCart = {
-    addedId : [],
-    added : []
+/*
+
+*/
+
+interface IAddedToCart {
+    addedId: string[];
+    added: addedType[];
+}
+interface ISelected {
+    viewPage: {};
+    addedToCart: IAddedToCart;
 }
 
-const selectedInit : any = {
+
+const addedToCart : IAddedToCart = {
+    addedId : [], 
+    added : []   
+}
+
+const selectedInit : ISelected = {
     viewPage: {},
     addedToCart
 }
 
-const selectedObjectsReducer = (selected : any = selectedInit,  action : Action) : any => {
+const selectedObjectsReducer = (selected : ISelected = selectedInit,  action : Action) : ISelected => {
       
     switch(action.type) {
 
         case ADD_REMOVE_PRODUCT_IN_CART:
             
             const { payload } = action;
-            let { added, addedId } : any = selected.addedToCart;
+            let { added, addedId } : IAddedToCart = selected.addedToCart;
             
             
             for (let i : number = 0; i  <  selected.addedToCart.addedId.length; i++){

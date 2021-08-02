@@ -1,7 +1,6 @@
 import React from 'react'
 import '../../SASS/Content.sass'
-import { Switch, Route, Router } from 'react-router-dom' 
-// import { JsxElement } from 'typescript'
+import { Switch, Route } from 'react-router-dom' 
 
 import { AboutContainer,
         ProdListContainer,

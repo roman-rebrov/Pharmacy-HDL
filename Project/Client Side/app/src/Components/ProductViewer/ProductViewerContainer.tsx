@@ -1,22 +1,26 @@
-import React, { Component } from 'react'
+import React  from 'react'
 import { connect } from 'react-redux'
-import {  ADD_REMOVE_PRODUCT_IN_CART, REMOVE_SELECTED_FOR_VIEWING } from '../../Redux/Actions/Actions'
+import {  Action, ADD_REMOVE_PRODUCT_IN_CART, REMOVE_SELECTED_FOR_VIEWING } from '../../Redux/Actions/Actions'
 import { State } from '../../Types/types';
-import ProductViewer from './ProductViewer'
+import ProductViewer, { IMapDispatchToProps, IMapStateToProps, ISelected } from './ProductViewer'
 import { withRouter } from 'react-router'
 import { asyncGetProductForViewActionCreator } from '../../Redux/Actions/asyncActions';
 import { useParams } from 'react-router-dom'
 
 
+interface IAction {
+    type: string;
+    payload: ISelected;
+}
 
 const ProductViewerContainer : React.FC = () => {
     const routeParams = useParams();
-    const Add_Remove_Action_Creater = (type : string, payload : {}) : {} =>  ({
+    const Add_Remove_Action_Creater = (type : string, payload : ISelected) : IAction =>  ({
         type,
         payload
     })
 
-    const mapStateToProps = (state : State) : any => {
+    const mapStateToProps = (state : State) : IMapStateToProps => {
         
         return({
         selectedObject :  {
@@ -29,10 +33,10 @@ const ProductViewerContainer : React.FC = () => {
         process: state.process,
     })};
     
-    const mapDispatchToProps  = (dispatch : (action : {}) => void ) :  any => {
+    const mapDispatchToProps  = (dispatch : (action : Action) => void ) :  IMapDispatchToProps => {
         return({
-            addedProductFunction : (obj : any) : void => {
-                const action : {} = Add_Remove_Action_Creater(ADD_REMOVE_PRODUCT_IN_CART,  obj)
+            addedProductFunction : (obj : ISelected) : void => {
+                const action : IAction = Add_Remove_Action_Creater(ADD_REMOVE_PRODUCT_IN_CART,  obj)
                 dispatch(action)
             },
             selectForViewing : (id : string) => {

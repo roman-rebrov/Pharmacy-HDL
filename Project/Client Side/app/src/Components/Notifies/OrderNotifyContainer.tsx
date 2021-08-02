@@ -5,13 +5,12 @@ import OrderNotifyComponent from './OrderNotifyComponent'
 
 const OrderNotifyContainer : React.FC = () => {
 
-    const mapStateToProps = (state : State) => ({
+    const mapStateToProps = (state : State) : {} => ({
 
     })
 
     const OrderNotifyWrap = connect(mapStateToProps)(OrderNotifyComponent)
-    // return (  <OrderNotifyWrap/>   )
-    return (  <OrderNotifyComponent/>   )
+    return (  <OrderNotifyWrap/>   )
 }
 
 export default OrderNotifyContainer;

@@ -2,13 +2,18 @@ import React from 'react'
 import Header from './Header'
 import { connect } from 'react-redux'
 import { Action,  ADD_REMOVE_PRODUCT_IN_CART } from '../../Redux/Actions/Actions'
-import { State } from '../../Types/types'
+import { addedType, State } from '../../Types/types'
 
-type addedType = {
+type addedT = {
     added : string[],
-    addedToCart : {}[]
+    addedToCart : addedType[]
 };
 
+interface IMapDispatch {
+    addRemove: ( id : string ) => void;
+    remove: ( id : string ) => void;
+    totalCost: (cost : number) => void;
+}
 
 const HeaderContainer : React.FC = () => {
     const removeActionCreator = (id : string) => ({
@@ -19,14 +24,14 @@ const HeaderContainer : React.FC = () => {
         type: ADD_REMOVE_PRODUCT_IN_CART, 
         payload: {id}
     });
-
-    const mapStateToProps = ( state : State ) : addedType => {
+ 
+    const mapStateToProps = ( state : State ) : addedT => {
         return {
             added : [...state.selectedObjects.addedToCart.addedId],
             addedToCart : [...state.selectedObjects.addedToCart.added],
         }
     };
-    const mapDispatchToProps = ( dispatch : (action : Action) => void ) : any => { 
+    const mapDispatchToProps = ( dispatch : (action : Action) => void ) : IMapDispatch => { 
         return { 
             remove : (id : string) => { 
                 dispatch(removeActionCreator(id))

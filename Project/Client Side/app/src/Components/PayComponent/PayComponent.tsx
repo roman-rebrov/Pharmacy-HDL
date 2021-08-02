@@ -1,24 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../SASS/PayComponent.sass';
-import { ProdObj } from '../../Types/types';
+import { addedType } from '../../Types/types';
 import OrderForm from '../Modals/OrderForm';
 import Spinner from '../Spinner';
 
+interface IProps {
+    addedToCart: addedType[];
+    remove : (id : string) => void;
+}
 
 
-const PayComponent : React.FC  = (props : any) => {
+
+const PayComponent : React.FC<IProps>  = ( props ) => {
     let total : number = 0;
     let { remove } = props;
-    props.addedToCart.forEach((element : ProdObj) => {
+    props.addedToCart.forEach((element : addedType) : void => {
         total += Number(element.cost.new);
     });
     const event = (id : string) => {
         remove(id);
     };
 
-    const [ orderSendProssecc, setOrderSendProssecc ] = React.useState(false)
-    let [modalWindow, setModalWindow] = React.useState(false);
+    const [ orderSendProssecc, setOrderSendProssecc ] = React.useState<boolean>(false)
+    let [modalWindow, setModalWindow] = React.useState<boolean>(false);
 
     const openModal = () => {
         if (props.addedToCart.length === 0) {
@@ -26,9 +31,6 @@ const PayComponent : React.FC  = (props : any) => {
         }else {
             setModalWindow(true);
         }
-        
-        // console.log(props.addedToCart.length);
-        
     }
 
     const closeModal = () => {
@@ -45,7 +47,7 @@ const PayComponent : React.FC  = (props : any) => {
             <div className="order-objects-wrap">
                 <div className="order-objects">
                     { 
-                        props.addedToCart.map((el : ProdObj , i : number) => (
+                        props.addedToCart.map((el : addedType , i : number) :  JSX.Element => (
                             <div key={el.id + i} className="order-objects_item">
                                 <Link to={'/productViewer/product/' + el.id} >
                                     <div className="">

@@ -1,4 +1,4 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
+import { call, put, takeEvery, takeLatest , SagaReturnType, StrictEffect} from 'redux-saga/effects'
 import { getProductsAPI, getSlidesListAPI, getRecommendedListAPI, getProductForViewAPI, newOrderAPI } from '../API/api'
 import { 
     getSlideListActionCreator ,
@@ -16,34 +16,34 @@ import {
      ASYNC_POST_NEW_ORDER
 } from '../Redux/Actions/asyncActions';
 
-function* getSlidesWorker () : any  {
+function* getSlidesWorker ()  {
     try{
-        const slideList =  yield call(getSlidesListAPI, "/slides");
+        const slideList : SagaReturnType<typeof getSlidesListAPI>=  yield call(getSlidesListAPI, "/slides");
         yield put(getSlideListActionCreator(slideList));
     } catch (err) {
         yield put({type : err, });
     }
 }
 
-function* getProductListWorker () : any {
+function* getProductListWorker ( props : Action ){                            /// !!!!
     try{
-        const productList   =  yield call(getProductsAPI, "/");
+        const productList : SagaReturnType<typeof getProductsAPI>  =  yield call(getProductsAPI, "/catalog" + "/" + props.payload);
         yield put(getProductListActionCreator(productList));
     } catch (err) {
         yield put({type : err, });
     }
 }
-function*  getRecommendedListWorker() : any{
+function*  getRecommendedListWorker() {
     try{
-        const list  =  yield call(getRecommendedListAPI, "/recommendedlist");
+        const list : SagaReturnType<typeof getRecommendedListAPI>  =  yield call(getRecommendedListAPI, "/recommendedlist");
         yield put( getRecommendedListActionCreator(list));
     } catch (err) {
         yield put({type : err, });
     }
 }
-function*  getProductForViewWorker(props : Action) : any{
+function*  getProductForViewWorker( props : Action ){
     try{
-        const obj  =  yield call(getProductForViewAPI, "/product" + "/" + props.payload);
+        const obj : SagaReturnType<typeof getProductForViewAPI> =  yield call(getProductForViewAPI, "/product" + "/" + props.payload);
         yield put( selectForViewingCreator(obj));
         yield put( {type: PROCESSING, payload : false} );
     } catch (err) {
@@ -51,18 +51,17 @@ function*  getProductForViewWorker(props : Action) : any{
     }
 }
 
-function* newOrderWorker(props : Action) : any {
+function* newOrderWorker(props : Action) : any  {
     try {
-        console.log(props);
-        
-        const obj = yield call( newOrderAPI, [ '/newOrder',  props.payload]);
+        // console.log(props);
+        const obj : SagaReturnType<typeof newOrderAPI > = yield call( newOrderAPI, [ '/newOrder',  props.payload]);
     } catch (err) {
         yield put({type : err, });
         
     }
 }
 
-export function* watcher () {
+export function* watcher () : Generator<StrictEffect> {
         yield takeEvery(ASYNC_GET_SLIDE_LIST,  getSlidesWorker);
         yield takeEvery(ASYNC_GET_PRODUCT_LIST,  getProductListWorker);
         yield takeEvery(ASYNC_GET_RECOMMENDED_LIST,  getRecommendedListWorker);

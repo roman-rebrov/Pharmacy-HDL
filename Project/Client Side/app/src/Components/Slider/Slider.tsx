@@ -1,13 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { SliderType } from '../../Types/types';
 // import { getSlidesList } from '../../API/api'
 import Spinner from '../Spinner'
 
 interface Props {
-    slides: {}[]
+    slides: SliderType[];
+    getSlides : () => void;
 }
 
-const Slider : React.FC<any>  = (props ) => {
+const Slider : React.FC<Props>  = (props ) => {
     let [ slideMoving, setSlideMoving ] = React.useState(0);
     let [ dotIndex, setDotIndex] = React.useState(0);
 
@@ -58,7 +60,7 @@ const Slider : React.FC<any>  = (props ) => {
                 style={{left: slideMoving + "%"}}
                 >
                 { props.slides.length > 0 ? ( 
-                    props.slides.map((item : {}, i : number) => {
+                    props.slides.map((item : SliderType, i : number) => {
                         return(
                             <div className="slide-wrap">
                                 <Link  to={"/productViewer/product/" + props.slides[i].id}>
@@ -73,7 +75,7 @@ const Slider : React.FC<any>  = (props ) => {
             </div>
                 <div className="slider-dots-container">
                     {
-                        props.slides.map((item : {}, i : number) => <div key={i} className={ i === dotIndex? "slide-dot active" : "slide-dot" }
+                        props.slides.map((item : SliderType, i : number) => <div key={i} className={ i === dotIndex? "slide-dot active" : "slide-dot" }
                             onClick={() =>{
                                  sliderInterval(i)
                                  setDotIndex(i)

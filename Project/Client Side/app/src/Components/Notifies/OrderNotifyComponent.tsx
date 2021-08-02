@@ -1,10 +1,10 @@
 import React from 'react'
 
-const OrderNotifyComponent : React.FC = ( props ) => {
+const OrderNotifyComponent : React.FC<{}> = ( props ) => {
     return (
         <div>
             <div className="order-notify-title">
-                ldkrglkdtgldfkgl;kdrfl;
+                    123456
             </div>
         </div>
     )

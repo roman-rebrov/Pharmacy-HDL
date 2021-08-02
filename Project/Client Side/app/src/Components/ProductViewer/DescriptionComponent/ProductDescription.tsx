@@ -1,10 +1,10 @@
 import React from 'react'
 
-interface Props {
+interface IProps {
     productDescription: String,
 }
 
-const ProductDescription : React.FC<any> = (props)  => {
+const ProductDescription : React.FC<IProps> = (props)  => {
 
     return ( 
         <div className="">

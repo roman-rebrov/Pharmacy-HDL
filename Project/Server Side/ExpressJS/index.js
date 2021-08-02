@@ -25,7 +25,8 @@ let recommendedlist = require('./src/recommendedList')
 function getProductById(id) {
     let obj = {};
 
-    DB.ProductsDB.forEach((item, i)  => {
+    // DB.ProductsDB.forEach((item, i)  => {
+        productList.list.forEach((item, i)  => {
         if( item.id === id ){
             obj = item;
         }
@@ -43,17 +44,46 @@ function checkUser(){
     }
     return usersBase;
 };
-
 function newOrderCreater(data) {
     let newOrderObject = {
         personal: {},
         location: {},
         products: []
     }
-
-
     return (newOrderObject)
 };
+
+function catalogHandler(obj, query){  //  !!!!!!!!!!!!!!!!!!!!!!!!
+    let responceObject = {
+        list: [],
+        page: 1,
+        limit: 20,
+        arrLength: obj.list.length
+    };
+    let page = responceObject.page;
+    let limit = responceObject.limit;
+    if (Object.keys(query).length > 0) {
+        if(query.limit != null){
+            limit = +query.limit;
+        }
+        if(query.page != null){
+            page = +query.page;
+        }
+
+    } 
+        const start = (page - 1) * limit ;
+        const finish = start + limit ;
+        responceObject.page = page;
+        responceObject.limit = limit;
+        responceObject.list = obj.list.slice(start, finish);
+
+        // console.log(query);
+
+
+
+    return(responceObject)
+};
+//  -------------------------------------------------------------------------------
 
 app.post("/newOrder", cors(), (req, res) => {
         let result = newOrderCreater(req.body);
@@ -71,17 +101,19 @@ app.post("/test", cors(), (req, res) => {
         back : req.body
     });
 });
-// ------------------------------------------------
-app.get("/", cors(), (req, res) => {
-    console.log("OK");
+// -----------------------------------------------------------------
+app.get("/catalog", cors(), (req, res) => {  // !!!!!!!!!!!!!!
+    console.log(req.query);
+    // console.log(productList.list);
+    const result = catalogHandler(productList, req.query);
     setTimeout(() => {
-        res.send(productList );
+        res.send( result );
     }, 2000)
 });
 
 app.get("/product/:id", cors(), (req, res) => {
-    console.log(req.params.id);
-    console.log(req.query);
+    // console.log(req.params.id);
+    // console.log(req.query);
     setTimeout(() => {
         let productObject = getProductById(req.params.id);
         console.log(productObject);
@@ -91,7 +123,6 @@ app.get("/product/:id", cors(), (req, res) => {
 });
 
 app.get("/slides", cors(), (req, res) => {
-    console.log("Yes");
 
     setTimeout(() => {
         res.send(slides );
@@ -131,7 +162,7 @@ app.get("/home/populars", cors(),(req, res) => {
 })
 // ======================================
 let prodArray = [];
-function productsFabrice(num) {
+function productsArrayCreater(num) {
     let arr = [];
     for (let i = 0; i < num; i++){
         arr.push({
@@ -151,9 +182,7 @@ function productsFabrice(num) {
     };
     return arr;
 };
-prodArray = productsFabrice(10)
-// productList.list.push(...prodArray)
+prodArray = productsArrayCreater(100)
+productList.list.push(...prodArray)
 
 // ======================================
-
-// 824@citycarrier.ru

@@ -1,17 +1,17 @@
-import {productsBlockType, ProductList} from '../Types/types'
+import {productsBlockType, ProductListType} from '../Types/types'
 
 const addedToCart = {
     addedId : [],
     added : []
 }
 
-const Products : ProductList | {list : []} = {
+const Products : ProductListType | {list : []} = {
     list : []
 }
 
 let productsBlock : productsBlockType = {
     Products,
     addedToCart,
-    viewPage: {}
+    viewPage: {  }
 }
 export default productsBlock;

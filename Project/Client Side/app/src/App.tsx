@@ -5,15 +5,12 @@ import Content from './Components/Content/Content'
 import Footer from './Components/Footer/Footer'
 
 // ----
-// import './App.css';
-// import {State} from './Types/types'
-// import './index.css';
 // ----
 
 const App : React.FC = ( ) => {
   return (
       <div className="App">
-        <Router>
+        <Router >
             <HeaderContainer/>
             <Content/>  
             <Footer/>

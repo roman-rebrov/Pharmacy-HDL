@@ -1,4 +1,5 @@
 import  axios from 'axios' 
+import { ProdObj, ProductListType, SliderType } from '../Types/types';
 
 const instance = axios.create(
      {
@@ -8,7 +9,7 @@ const instance = axios.create(
 
 export const getProductsAPI = async(props : string) => {
      try{
-          return await instance.get( props )
+          return await instance.get<ProductListType>( props )
           .then(response => response.data )
           .catch(err => console.log(err))
      } catch (err) {
@@ -18,7 +19,7 @@ export const getProductsAPI = async(props : string) => {
 
 export const getProductForViewAPI = async(props : string) => {
      try{
-          return await instance.get( props )
+          return await instance.get<ProdObj>( props )
           .then(response => response.data )
           .catch(err => console.log(err))
      } catch (err) {
@@ -28,7 +29,7 @@ export const getProductForViewAPI = async(props : string) => {
 
 export const getSlidesListAPI = async(props : string) => {
      try{
-          return await instance.get(props)
+          return await instance.get<{list : SliderType[]}>(props)
                     .then(response => response.data )
                     .catch(err => console.log(err))
           } catch(err){
@@ -39,7 +40,7 @@ export const getSlidesListAPI = async(props : string) => {
 
 export const getRecommendedListAPI = async(props : string) => {
      try{
-          return await instance.get(props)
+          return await instance.get<ProdObj[]>(props)
                     .then(response => response.data )
                     .catch(err => console.log(err))
           } catch(err){
@@ -56,11 +57,3 @@ export const newOrderAPI = async( props : any ) => {
           console.log(err);
      }
 }
-// export const getProducts = async() => {
-//      let req = await fetch('https://jsonplaceholder.typicode.com/todos/1') as any;
-//      let data : any = await req.then((response : any) =>{ return response.json()} );
-//      let dataE : any = await data.then((e : any) =>{console.log(e);
-//      } );
-//      await req.catch((err : any ) => console.log(err));
-//      return await   data;
-// }

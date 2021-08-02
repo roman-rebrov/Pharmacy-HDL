@@ -1,30 +1,27 @@
-import React, { MouseEventHandler } from 'react'
+import React from 'react'
 import '../../SASS/ProductCard.sass'
 import { ProdObj } from '../../Types/types'
 import {Link} from 'react-router-dom'
 // import { render } from '@testing-library/react'
 import PhotoViewer from '../Modals/PhotoViewer'
 
- 
+ interface IProps {
+    productObject : ProdObj;
+    addedProductFunction : (obj : ProdObj) => void;
+    added: Array<string>;
+ }
 
 
-const ProductCard : React.FC<{productObject : ProdObj, 
-    addedProductFunction : (id : any) => void,
-    added: Array<string>,
-}> =  ( props )  => {
+const ProductCard : React.FC<IProps> =  ( props )  => {
 
     let  {productObject,
             added,
-            addedProductFunction,
-    } : {
-            added: Array<string>,
-            productObject : any, 
-            addedProductFunction : (id : any) => void,
-        }  
-        =  props;
+            addedProductFunction
+    } : IProps  =  props;
+
     const addedButton : string = added.indexOf(productObject.id) === -1 ? 'Add' : 'Remove'
-    let [modal, setModal]  = React.useState(false)
-    let [button, setButton] = React.useState(addedButton);
+    let [modal, setModal]  = React.useState<boolean>(false)
+    let [button, setButton] = React.useState<string>(addedButton);
     
 
     const openModal = () => {
@@ -33,7 +30,7 @@ const ProductCard : React.FC<{productObject : ProdObj,
     const close = () => {
         setModal(false)
     };
-    const Add_Remove_Product = (event : MouseEvent) => {
+    const Add_Remove_Product = (event : React.MouseEvent<HTMLButtonElement>) => {
         addedProductFunction(productObject)
     };
     
@@ -58,7 +55,7 @@ const ProductCard : React.FC<{productObject : ProdObj,
                     </div>
                     <div className="add-in-cart-wrap"> 
                         <button
-                            onClick = {(e : any) : void =>{ Add_Remove_Product(e)}}
+                            onClick = {(e : React.MouseEvent<HTMLButtonElement>) : void =>{ Add_Remove_Product( e )}}
                             >
                         {
                             button

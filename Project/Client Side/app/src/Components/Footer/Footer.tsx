@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../SASS/Footer.sass'
 
-const Footer : React.FC = () : React.ReactElement => {
+const Footer : React.FC = ()  => {
     return (
         <div className = 'footer'>
             <div className="footer-block block">
