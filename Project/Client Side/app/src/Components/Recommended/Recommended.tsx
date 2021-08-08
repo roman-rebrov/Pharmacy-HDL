@@ -14,7 +14,6 @@ interface IProps {
 const Recommended : React.FC<IProps> = (props) => {
 
     let list  :  ProdObj[]  = props.list;
-    // const getRecommendedList : () => void  =  props.getRecommendedList;
     if(list.length === 0){
         props.getRecommendedList()
     }

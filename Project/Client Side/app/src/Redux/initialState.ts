@@ -5,13 +5,18 @@ const addedToCart = {
     added : []
 }
 
-const Products : ProductListType | {list : []} = {
-    list : []
+const Products : ProductListType = {  
+    list : [],
+    arrLength: 0,
+    limit: 0,
+    page: 0,
+    topic: ""
 }
 
 let productsBlock : productsBlockType = {
     Products,
     addedToCart,
+    topics: [],
     viewPage: {  }
 }
 export default productsBlock;

@@ -12,6 +12,5 @@ export const rootReducer  = combineReducers({
     recommendedList: recommendedListReducer,
     selectedObjects,
     process: processReducer
-    // popularList : popularListReducer
 });
 

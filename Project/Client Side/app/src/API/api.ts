@@ -37,6 +37,17 @@ export const getSlidesListAPI = async(props : string) => {
           }
 }
 
+export const getTopicListAPI = async(props: string) => {
+     try{
+          return await instance.get<string[]>(props)
+                    .then(response => response.data )
+                    .catch(err => console.log(err))
+          } catch(err){
+               console.log(err);
+          }
+}
+
+
 
 export const getRecommendedListAPI = async(props : string) => {
      try{

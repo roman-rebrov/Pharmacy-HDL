@@ -2,13 +2,14 @@ import React  from 'react'
 import { Link, useLocation , useHistory } from 'react-router-dom'
 import { ASYNC_GET_PRODUCT_LIST } from '../../Redux/Actions/asyncActions'
 import '../../SASS/ProductList.sass'
-import { ProductListType } from '../../Types/types'
+import { ProdObj, ProductListType } from '../../Types/types'
 import ProdCardContainer from '../ProductCards/ProdCardsContainer'
 import Spinner from '../Spinner'
+import queryString from 'query-string'
 
 interface IProps {
-    Products: any;
-    // Products: ProductListType;
+    proccess: boolean;
+    Products: ProductListType;
     dispatch: ( action : {type: string, payload : string} ) => void;
 }
 
@@ -17,65 +18,73 @@ const ProductList : React.FC<IProps> = ( props ) => {
     const history = useHistory();
     const { search }  = useLocation();
     const pages = Math.ceil(props.Products.arrLength / props.Products.limit);
-    console.log(pages);
-    // console.log(props.Products);
 
-    const  getProducts = (params : string) => {
-        props.dispatch({ type: ASYNC_GET_PRODUCT_LIST, payload:  params });
+    const  getProducts = (params : string = "") => {
+        props.dispatch({ type: ASYNC_GET_PRODUCT_LIST, payload:  params }); 
     };
     
-
+    
     const limitHandler = (limit : number) : void =>{
-        console.log(limit);
-        history.push("?limit=" + limit);
-        getProducts("?limit=" + limit);
+        let params = queryString.parse(search);
+        if(params.topic){
+            history.push("?limit=" + limit + "&" + "topic=" + params.topic);
+            getProducts("?limit=" + limit + "&" + "topic=" + params.topic);
+        }else{
+            history.push("?limit=" + limit);
+            getProducts("?limit=" + limit);
+        }
     }
 
     const pagesHandler = (num : number) => {
-        console.log(search);
-        if(search !== ""){
-
+        let params = queryString.parse(search);
+        if(params.topic){
+            history.push("?page=" + num + "&" + "limit=" + props.Products.limit + "&" + "topic=" + params.topic);
+            getProducts("?page=" + num + "&" + "limit=" + props.Products.limit + "&" + "topic=" + params.topic);
         }else{
-            history.push("?page=" + num);
-            getProducts("?page=" + num);
+            history.push("?page=" + num + "&" + "limit=" + props.Products.limit);
+            getProducts("?page=" + num + "&" + "limit=" + props.Products.limit);
         }
-        
     }
     
+
+    const pageNumberHandleer = (a : number, b : number) => {
+        return(( a === b) ? "active" : "" )
+    }
+
     React.useEffect(() => {
-        if(props.Products.list.length === 0){
-            getProducts(search)
-        };
-    })
+        if(!props.proccess){
+            if(props.Products.list.length === 0){
+                getProducts(search);
+            };
+        }
+        
+    }, [])
     
     const pagesNav = () :  JSX.Element[] => {
         let list = [];
         for (let i = 0; i  <  pages;  i++) {
-            list.push(<div className="" style={{cursor: "pointer", border: "1px solid white", padding: "5px"}} onClick={() => {pagesHandler(i + 1)}}><span>{i + 1}</span></div>)
+            list.push(<div className={ " "  +pageNumberHandleer(i + 1, props.Products.page )  } style={{cursor: "pointer", border: "1px solid #cccccc55", 
+                        padding: "0 0.5rem", marginLeft: "1rem"}} onClick={() => {pagesHandler(i + 1)}}><span>{i + 1}</span></div>)
         }
-        return(   list  );
+        return( list );
     }
 
     return (
         <div>
             <div className="home-catalog-title title">
-                <div className="">
+                <div >
                         Catalog 
                 </div>
                 <div className="catalog-tools-wrap">
-                    {/* <Link to="/catalog?limit=20"> */}
-                            <div className="limit-20 limit" onClick= {() => {limitHandler(20)}}><span>20</span></div>
-                    {/* </Link> */}
-                    {/* <Link to="/catalog?limit=40"> */}
-                        <div className="limit-40 limit" onClick= {() => {limitHandler(40)}}><span>40</span></div>
-                    {/* </Link> */}
+                            <div className={"limit-20 limit " + pageNumberHandleer(20 , props.Products.limit )}  onClick= {() => {limitHandler(20)}}><span>20</span></div>
+                        <div className={"limit-40 limit " + pageNumberHandleer(40 , props.Products.limit )}  onClick= {() => {limitHandler(40)}}><span>40</span></div>
                 </div>
             </div>
-            { props.Products.list.length  === 0 &&  <Spinner/>} 
+            { props.proccess &&  <Spinner/>} 
             <div className="product-list">
                 {
-                    props.Products.list.map((item : any,  i : number)  :  JSX.Element => {    ////  !!!!!!!!!!!!!!!!!!!!! :any
-                        return (
+                    props.Products.list.map((item : ProdObj,  i : number)  :  JSX.Element => {   
+                        return (    
                             <ProdCardContainer    
                                 key={item.id + i}
                                 productObject={item}

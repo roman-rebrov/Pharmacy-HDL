@@ -3,7 +3,6 @@ import '../../SASS/Content.sass'
 import { Switch, Route } from 'react-router-dom' 
 
 import { AboutContainer,
-        ProdListContainer,
         ProductViewerContainer,
         PayComponentContainer,
         SliderContainer, 

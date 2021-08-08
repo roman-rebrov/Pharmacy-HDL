@@ -11,18 +11,17 @@ export type ProdObj = {
     categories ?: {
         main ?: string,
         keywords ?: string[]
-    }
+    },
+    topics: string[]
 };
-export type ProductListType =  {list : ProdObj[]}
+export type ProductListType =  {
+    list : ProdObj[],
+    arrLength: number,
+    limit: number,
+    page: number,
+    topic: string
+}
 
-// export type selectedObjectType = {
-//     id : string,
-//      name: string,
-//      cost : {
-//         old : string,
-//         new : string
-//     }
-// }
 
 export type addedType = {
     id : string,
@@ -39,6 +38,7 @@ export type productsBlockType = {
         addedId : string[],
         added : addedType[]
     },
+    topics: string[],
     viewPage : addedType | {},
 }
 

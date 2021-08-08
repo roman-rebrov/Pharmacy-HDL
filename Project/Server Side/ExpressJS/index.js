@@ -2,7 +2,7 @@ const express = require("express");
 // const bodyParser = require("body-parser")
 const cors = require("cors");
 const app = express();
-const port = 3219;
+const port = process.env.PORT ||  3219;
 app.use(express.urlencoded({ extended : true })) 
 app.use(express.static('public'))
 app.use(express.json({ limit : '1mb' }))
@@ -21,6 +21,20 @@ let recommendedlist = require('./src/recommendedList')
 /**
  * 
 */
+///////////////////////////////////////////////////////////////////////////////////////////////////      
+function topicHandler(list){
+    let topicList = [];
+    for(let i = 0; i < list.length; i++){
+        topicList.push(...list[i].topic);
+    }
+    return(topicList);
+}
+
+const TopicListRow = topicHandler(productList.list);
+// productList.topic = [... new Set(TopicListRow)];
+const TopicList = [... new Set(TopicListRow)];
+// console.log(TopicList);
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////      
 function getProductById(id) {
     let obj = {};
@@ -53,16 +67,33 @@ function newOrderCreater(data) {
     return (newOrderObject)
 };
 
+function topicSelectedHandler(list, topic) {
+    let newList = [];
+    for (let i = 0; i < list.length; i++) {
+        const el = list[i].topic;
+        for (let j = 0; j < el.length; j++) {
+            const topicsElement = el[j];
+            if(topicsElement === topic){ newList.push(list[i]) }
+        }
+    }
+    return(newList);
+}
+
 function catalogHandler(obj, query){  //  !!!!!!!!!!!!!!!!!!!!!!!!
+    let selectedList = obj.list;
     let responceObject = {
         list: [],
         page: 1,
         limit: 20,
-        arrLength: obj.list.length
-    };
+        // topic: TopicList
+    }; 
     let page = responceObject.page;
     let limit = responceObject.limit;
     if (Object.keys(query).length > 0) {
+        if(query.topic){
+            selectedList = topicSelectedHandler(obj.list, query.topic);
+            responceObject.topic = query.topic;
+        }
         if(query.limit != null){
             limit = +query.limit;
         }
@@ -71,15 +102,12 @@ function catalogHandler(obj, query){  //  !!!!!!!!!!!!!!!!!!!!!!!!
         }
 
     } 
+        responceObject.arrLength =  selectedList.length;
         const start = (page - 1) * limit ;
         const finish = start + limit ;
         responceObject.page = page;
         responceObject.limit = limit;
-        responceObject.list = obj.list.slice(start, finish);
-
-        // console.log(query);
-
-
+        responceObject.list = selectedList.slice(start, finish);
 
     return(responceObject)
 };
@@ -110,6 +138,13 @@ app.get("/catalog", cors(), (req, res) => {  // !!!!!!!!!!!!!!
         res.send( result );
     }, 2000)
 });
+
+app.get("/topics", cors(), (req, res) => { 
+    setTimeout(() => {
+        res.send( TopicList );
+    }, 1000)
+});
+
 
 app.get("/product/:id", cors(), (req, res) => {
     // console.log(req.params.id);
@@ -176,7 +211,8 @@ function productsArrayCreater(num) {
                 old : '',
                 new : '1' + i
             },
-            discribes : 'Подгузники-трусики Libero Up&Go (7-11кг.), 18 шт.'
+            discribes : 'Подгузники-трусики Libero Up&Go (7-11кг.), 18 шт.',
+            topic: [""],
         },
         );
     };

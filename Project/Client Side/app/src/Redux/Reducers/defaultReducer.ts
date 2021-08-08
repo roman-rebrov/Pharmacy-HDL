@@ -3,12 +3,13 @@ import {
      SELECTED_FOR_VIEWING,
      GET_PRODUCTS,
      Action,
+     SET_TOPIC_LIST,
 } from '../Actions/Actions'
 import productsBlockInit from '../initialState';
-import {ProdObj, ProductListType, productsBlockType} from '../../Types/types'
+import { productsBlockType} from '../../Types/types'
  
  
- const ProductListReducer = (productsBlock : productsBlockType = productsBlockInit,  action : Action | {type:  string, payload : {list : {}[]}}) : productsBlockType => {
+ const ProductListReducer = (productsBlock : productsBlockType = productsBlockInit,  action : Action ) : productsBlockType => {
     
     switch(action.type) {
         case GET_PRODUCTS:            
@@ -18,7 +19,11 @@ import {ProdObj, ProductListType, productsBlockType} from '../../Types/types'
                     ...action.payload
                 }
             });
-
+            case SET_TOPIC_LIST:
+                return({
+                ...productsBlock,
+                topics: [...action.payload]
+                })
     }
     return productsBlock
 };

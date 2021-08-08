@@ -73,7 +73,7 @@ const Header : React.FC<IProps> = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="cart"            // КОРЗИНА
+                <div className="cart"            // THE CART
                     onMouseOver={()=>{
                         setPopup(true)
                     }}

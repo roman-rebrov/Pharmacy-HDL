@@ -4,7 +4,7 @@ import ProductCard from './ProductCard'
 import { ActionType, ProdObj, State } from '../../Types/types'
 import {
     ADD_REMOVE_PRODUCT_IN_CART,
-    REMOVE_SELECTED_FOR_VIEWING,  // selectForViewingCreator,
+    REMOVE_SELECTED_FOR_VIEWING,  
 } from '../../Redux/Actions/Actions'
 
 import { withRouter } from 'react-router'
@@ -37,7 +37,7 @@ const ProdCardsContainer : React.FC<{ productObject : ProdObj }> = ( {productObj
             }
         }
     };
-    const ProductCardWrap = connect(mapStateToProps,mapDispatchToProps)(ProductCard);
+    const ProductCardWrap = connect(mapStateToProps, mapDispatchToProps)(ProductCard);
     const ProductCardWrapWithRouter = withRouter(ProductCardWrap);
     return(<ProductCardWrapWithRouter/>);
 };

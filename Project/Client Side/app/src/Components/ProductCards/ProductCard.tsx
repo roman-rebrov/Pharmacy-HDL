@@ -30,7 +30,7 @@ const ProductCard : React.FC<IProps> =  ( props )  => {
     const close = () => {
         setModal(false)
     };
-    const Add_Remove_Product = (event : React.MouseEvent<HTMLButtonElement>) => {
+    const Add_Remove_Product = () => {
         addedProductFunction(productObject)
     };
     
@@ -55,7 +55,7 @@ const ProductCard : React.FC<IProps> =  ( props )  => {
                     </div>
                     <div className="add-in-cart-wrap"> 
                         <button
-                            onClick = {(e : React.MouseEvent<HTMLButtonElement>) : void =>{ Add_Remove_Product( e )}}
+                            onClick = {() : void =>{ Add_Remove_Product(  )}}
                             >
                         {
                             button
