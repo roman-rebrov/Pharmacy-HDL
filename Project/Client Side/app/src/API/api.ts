@@ -12,7 +12,7 @@ export const getProductsAPI = async(props : string) => {
           return await instance.get<ProductListType>( props )
           .then(response => response.data )
           .catch(err => console.log(err))
-     } catch (err) {
+     } catch (err) { 
           console.log(err);
      }
 }
@@ -30,7 +30,7 @@ export const getProductForViewAPI = async(props : string) => {
 export const getSlidesListAPI = async(props : string) => {
      try{
           return await instance.get<{list : SliderType[]}>(props)
-                    .then(response => response.data )
+                    .then(response => response.data.list )
                     .catch(err => console.log(err))
           } catch(err){
                console.log(err);

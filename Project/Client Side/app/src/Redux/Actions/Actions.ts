@@ -48,9 +48,9 @@ export const selectForViewingCreator = ( obj : void | ProdObj ) : IForViewingCre
     payload : obj
 })
 
-export const getSlideListActionCreator = (slides : any) : ISlideListActionCreator =>( {
+export const getSlideListActionCreator = (list : void |  SliderType[]) : ISlideListActionCreator =>( {
     type : GET_SLIDE_LIST, 
-    payload: slides.list
+    payload: list
 })
 
 export const getProductListActionCreator = (products : void | ProductListType) : IProductListActionCreator => ( {

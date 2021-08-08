@@ -48,7 +48,7 @@ function* getProductListWorker ( props : Action ){                            //
     } catch (err) {
         yield put({type : err, });
     }
-}
+} 
 function*  getRecommendedListWorker() {
     try{
         const list : SagaReturnType<typeof getRecommendedListAPI>  =  yield call(getRecommendedListAPI, "/recommendedlist");
