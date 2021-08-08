@@ -39,7 +39,7 @@ function* getTopicListWorker ()  {
     }
 }
 
-function* getProductListWorker ( props : Action ){                            /// !!!!
+function* getProductListWorker ( props : Action ){         
     try{
         yield put( {type: PROCESSING, payload : true} );
         const productList : SagaReturnType<typeof getProductsAPI>  =  yield call(getProductsAPI, "/catalog" + "/" + props.payload);

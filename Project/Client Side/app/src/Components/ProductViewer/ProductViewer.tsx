@@ -56,44 +56,48 @@ const ProductViewer : React.FC<IProps>  = ( props ) => {
     return (
         <div>
             {!props.selectedObject.id ?  <Spinner/> : 
-            <div className="product-view-header">
-                <div className="product-view-demo-photo"
-                        onClick={() => {openModal()}}
-                        >
-                    <img src={photo[0]} alt=""/>    
-                </div>
-                <div className="product-view-headeer-info">
-                        <div className="">{name}</div>
-                        <div className="product-view-headeer-cost">
-                                {cost.new}p 
+                    <div>
+
+                        <div className="product-view-header">
+                            <div className="product-view-demo-photo"
+                                    onClick={() => {openModal()}}
+                                    >
+                                        <img src={photo[0]} alt=""/>    
+                            </div>
+                            <div className="product-view-headeer-info">
+                                    <div className="">{name}</div>
+                                    <div className="product-view-headeer-cost">
+                                            {cost.new}p 
+                                    </div>
+                                    <div className="product-view-add-button">
+                                        <button
+                                                        onClick = {() => Add_Remove_Product()}
+                                                        >
+                                                {buttonAdded}
+                                        </button>
+                                    </div>
+
+                            </div>
                         </div>
-                        <div className="product-view-add-button">
-                            <button
-                                            onClick = {() => Add_Remove_Product()}
-                                        >
-                                    {buttonAdded}
-                            </button>
+                    
+                        <div className="description-container">
+                            <div className="product-view-tabs-wrapper">
+                                <div className="product-view-tabs-btns">
+                                Describes
+                                </div>
+                            </div>
+                            <ProductDescriptionContainer/>
+                            <div className="product-view-discribes">
+                            </div>
                         </div>
 
-                </div>
-            </div>
-            }
-            <div className="description-container">
-                <div className="product-view-tabs-wrapper">
-                    <div className="product-view-tabs-btns">
-                       Describes
                     </div>
-                </div>
-                <ProductDescriptionContainer/>
-                <div className="product-view-discribes">
-                </div>
-            </div>
-
+            }
             {modal && <PhotoViewer 
-          img={photo[0]}
-          event={close}
-        />}
-        </div>
+                img={photo[0]}
+                event={close}
+                />}
+                </div>
     )
 }
 

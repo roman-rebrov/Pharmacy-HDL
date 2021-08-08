@@ -7,7 +7,7 @@ interface IProps {
 const ProductDescription : React.FC<IProps> = (props)  => {
 
     return ( 
-        <div className="">
+        <div className="product-viewer-prod-description-wrap">
             {props.productDescription}
         </div>
      )

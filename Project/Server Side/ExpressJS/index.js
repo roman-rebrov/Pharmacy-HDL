@@ -58,7 +58,7 @@ function checkUser(){
     }
     return usersBase;
 };
-function newOrderCreater(data) {
+function newOrderCreater(data) {     //    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     let newOrderObject = {
         personal: {},
         location: {},
@@ -79,7 +79,7 @@ function topicSelectedHandler(list, topic) {
     return(newList);
 }
 
-function catalogHandler(obj, query){  //  !!!!!!!!!!!!!!!!!!!!!!!!
+function catalogHandler(obj, query){  //  
     let selectedList = obj.list;
     let responceObject = {
         list: [],
@@ -113,7 +113,7 @@ function catalogHandler(obj, query){  //  !!!!!!!!!!!!!!!!!!!!!!!!
 };
 //  -------------------------------------------------------------------------------
 
-app.post("/newOrder", cors(), (req, res) => {
+app.post("/newOrder", cors(), (req, res) => {        //    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         let result = newOrderCreater(req.body);
         res.json(result);
 });
@@ -130,7 +130,7 @@ app.post("/test", cors(), (req, res) => {
     });
 });
 // -----------------------------------------------------------------
-app.get("/catalog", cors(), (req, res) => {  // !!!!!!!!!!!!!!
+app.get("/catalog", cors(), (req, res) => {
     console.log(req.query);
     // console.log(productList.list);
     const result = catalogHandler(productList, req.query);
@@ -196,29 +196,29 @@ app.get("/home/populars", cors(),(req, res) => {
     }
 })
 // ======================================
-let prodArray = [];
-function productsArrayCreater(num) {
-    let arr = [];
-    for (let i = 0; i < num; i++){
-        arr.push({
-            id: "A20" + i,
-            brande: "Koktail",
-            name: "kflkfg sdf",
-            photo : [
-                'https://media.apteka366.ru/sys_master/product/h91/h2b/8817132765214.jpg',
-            ],
-            cost : {
-                old : '',
-                new : '1' + i
-            },
-            discribes : 'Подгузники-трусики Libero Up&Go (7-11кг.), 18 шт.',
-            topic: [""],
-        },
-        );
-    };
-    return arr;
-};
-prodArray = productsArrayCreater(100)
-productList.list.push(...prodArray)
+// let prodArray = [];
+// function productsArrayCreater(num) {
+//     let arr = [];
+//     for (let i = 0; i < num; i++){
+//         arr.push({
+//             id: "A20" + i,
+//             brande: "Koktail",
+//             name: "kflkfg sdf",
+//             photo : [
+//                 'https://media.apteka366.ru/sys_master/product/h91/h2b/8817132765214.jpg',
+//             ],
+//             cost : {
+//                 old : '',
+//                 new : '1' + i
+//             },
+//             discribes : 'Подгузники-трусики Libero Up&Go (7-11кг.), 18 шт.',
+//             topic: [""],
+//         },
+//         );
+//     };
+//     return arr;
+// };
+// prodArray = productsArrayCreater(100)
+// productList.list.push(...prodArray)
 
 // ======================================
