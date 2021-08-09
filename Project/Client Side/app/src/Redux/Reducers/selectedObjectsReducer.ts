@@ -1,5 +1,5 @@
 import { addedType } from "../../Types/types";
-import { ADD_REMOVE_PRODUCT_IN_CART,  SELECTED_FOR_VIEWING,   Action,  REMOVE_SELECTED_FOR_VIEWING } from "../Actions/Actions"
+import { ADD_REMOVE_PRODUCT_IN_CART,  SELECTED_FOR_VIEWING,   Action,  REMOVE_SELECTED_FOR_VIEWING, RESET_PRODUCT_IN_CART } from "../Actions/Actions"
 
 /*
 
@@ -61,11 +61,22 @@ const selectedObjectsReducer = (selected : ISelected = selectedInit,  action : A
                     }
             });
 
+            case  RESET_PRODUCT_IN_CART:
+                
+                return({
+                    viewPage: {},
+                    addedToCart: {
+                        addedId : [], 
+                        added : []   
+                    }
+                });
+
             case  SELECTED_FOR_VIEWING :
                 return({
                     ...selected,
                     viewPage: { ...action.payload }
                 });
+
                 case REMOVE_SELECTED_FOR_VIEWING:
                     return({
                         ...selected,

@@ -1,3 +1,5 @@
+import { IOrders } from "../Redux/Reducers/newOrderReducer";
+
 export type ProdObj = {
     id : string,
     brand ?: string,
@@ -44,7 +46,8 @@ export type productsBlockType = {
 
 export type State = {
     productsBlock : productsBlockType,
-    slider : SliderType[],
+    slider : SliderType[], 
+    newOrder: IOrders,
     process : boolean,
     recommendedList : Array<ProdObj>,
     selectedObjects : {

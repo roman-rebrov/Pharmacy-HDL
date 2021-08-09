@@ -7,7 +7,9 @@ import {
     selectForViewingCreator,
     Action,
     PROCESSING,
-    setTopicList
+    setTopicList,
+    setNewOrderNumber,
+    RESET_PRODUCT_IN_CART
 } from '../Redux/Actions/Actions';
 import {
      ASYNC_GET_SLIDE_LIST ,
@@ -59,18 +61,20 @@ function*  getRecommendedListWorker() {
 }
 function*  getProductForViewWorker( props : Action ){
     try{
-        // yield put( {type: PROCESSING, payload : true} );
         const obj : SagaReturnType<typeof getProductForViewAPI> =  yield call(getProductForViewAPI, "/product" + "/" + props.payload);
         yield put( selectForViewingCreator(obj));
-        // yield put( {type: PROCESSING, payload : false} );
     } catch (err) {
         yield put({type : err, });
     }
 }
 
-function* newOrderWorker(props : Action) : any  {
+function* newOrderWorker(props : Action)  {
     try {
+        yield put( {type: PROCESSING, payload : true} );
         const obj : SagaReturnType<typeof newOrderAPI > = yield call( newOrderAPI, [ '/newOrder',  props.payload]);
+        yield put(setNewOrderNumber(obj));
+        yield put( {type: PROCESSING, payload : false} );
+        yield put( {type: RESET_PRODUCT_IN_CART} );
     } catch (err) {
         yield put({type : err, });
         

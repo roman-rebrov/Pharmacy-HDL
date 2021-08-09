@@ -1,18 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import '../../SASS/PayComponent.sass';
 import { addedType } from '../../Types/types';
-import OrderForm from '../Modals/OrderForm';
+import OrderForm, { ISendOrderForm } from '../Modals/OrderForm';
 import Spinner from '../Spinner';
 
 interface IProps {
+    process: boolean;
     addedToCart: addedType[];
+    newOrder: string;
     remove : (id : string) => void;
+    sendNewOrder: (data: INewOrder) => void;
 }
 
-
+export interface INewOrder {
+    personalData: ISendOrderForm | {};
+    productsOrder: string[];
+}
 
 const PayComponent : React.FC<IProps>  = ( props ) => {
+
+    console.log(props.newOrder);
+    
     let total : number = 0;
     let { remove } = props;
     props.addedToCart.forEach((element : addedType) : void => {
@@ -24,7 +33,22 @@ const PayComponent : React.FC<IProps>  = ( props ) => {
 
     const [ orderSendProssecc, setOrderSendProssecc ] = React.useState<boolean>(false)
     let [modalWindow, setModalWindow] = React.useState<boolean>(false);
+    let [changeDir, setChangeDir] = React.useState<boolean>(false);
 
+    const sendOrderHandler = (personalData : ISendOrderForm) => {
+        let newOrder : INewOrder  = {productsOrder : [], personalData: {}};
+        
+        newOrder.personalData = personalData;
+        for (let i = 0; i < props.addedToCart.length; i++) {
+            const el = props.addedToCart[i];
+            newOrder.productsOrder.push(el.id)
+        }
+        
+        props.sendNewOrder(newOrder);
+        setModalWindow(false);
+        setChangeDir(true)
+    }
+    
     const openModal = () => {
         if (props.addedToCart.length === 0) {
             
@@ -32,10 +56,12 @@ const PayComponent : React.FC<IProps>  = ( props ) => {
             setModalWindow(true);
         }
     }
-
+    
     const closeModal = () => {
         setModalWindow(false)
     }
+    
+    {if (changeDir &&( props.addedToCart.length === 0)) return <Redirect to='/orderInfo' />}
 
     return (
         <div>
@@ -87,8 +113,8 @@ const PayComponent : React.FC<IProps>  = ( props ) => {
                 </div>
             </div>
 
-            {modalWindow && <OrderForm event = {closeModal}  pross={setOrderSendProssecc}/>}
-            { orderSendProssecc && <Spinner/>}
+            {modalWindow && <OrderForm event = {closeModal}  pross={setOrderSendProssecc} sendOrderHandler={sendOrderHandler}/>}
+            { props.process && <Spinner/>}
 
         </div>
     )

@@ -61,8 +61,9 @@ const Slider : React.FC<Props>  = (props ) => {
                 >
                 { props.slides.length > 0 ? ( 
                     props.slides.map((item : SliderType, i : number) => {
+                        
                         return(
-                            <div className="slide-wrap">
+                            <div className="slide-wrap"  key= {item.id + i}>
                                 <Link  to={"/productViewer/product/" + props.slides[i].id}>
                                     <img src = {props.slides[i].baner} className=""  alt=""/>
                                 </Link>
@@ -75,7 +76,7 @@ const Slider : React.FC<Props>  = (props ) => {
             </div>
                 <div className="slider-dots-container">
                     {
-                        props.slides.map((item : SliderType, i : number) => <div key={i} className={ i === dotIndex? "slide-dot active" : "slide-dot" }
+                        props.slides.map((item : SliderType, i : number) => <div key={item.id + i} className={ i === dotIndex? "slide-dot active" : "slide-dot" }
                             onClick={() =>{
                                  sliderInterval(i)
                                  setDotIndex(i)

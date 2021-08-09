@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router';
 import '../../SASS/orderFormStyle.sass'
 
-interface ISendOrderForm {
+export interface ISendOrderForm {
     name: string;
     address: string;
     phone: string;
@@ -15,13 +15,45 @@ interface IForms {
     id: string;
 }
 
-const OrderForm : React.FC <{event: () => void, pross: (a : boolean) => void}> = ({event, pross}) => {
+interface IProps {
+    event: () => void;
+    pross: (a : boolean) => void;
+    sendOrderHandler: (data : ISendOrderForm ) => void;
+}
+
+const OrderForm : React.FC <IProps> = ({event, pross, sendOrderHandler}) => {
+    
+    const [ formValid, setFormValid ] = React.useState<boolean>(false)
+    const [ info, setInfo ] = React.useState<boolean>(true)
+
+    const formValidHandler = (data : any) : void => {
+        let check : boolean = false;
+        for( let el in data ){
+            
+            if(data[el].length > 0){
+                if(el === 'email'){
+                    if(data[el].match(/@/) === null){
+                        check = false;
+                        setInfo(false)
+                        break;
+                    }
+                }
+                        setInfo(true)
+                        check = true;
+            }else {
+                        setInfo(false);
+                        check = false;
+                break;
+            }
+        }
+        setFormValid(check);
+    }
 
     const close = () => {
         event();
     }
 
-    const [ sendOrderForm, setSendOrderForm ] = React.useState<ISendOrderForm>({
+    const [ sendOrderForm, setSendOrderForm ] = React.useState<ISendOrderForm>({     // ISendOrderForm
         name: '',
         address: '',
         phone: '',
@@ -29,26 +61,19 @@ const OrderForm : React.FC <{event: () => void, pross: (a : boolean) => void}> =
     })
 
     const orderFormHandler = (e : React.ChangeEvent<IForms>) : void => {
-        let newData : any = {...sendOrderForm};             // ??????????????????????????????
+        let newData : any = {...sendOrderForm};       
         newData[e.target.id] = e.target.value;
         setSendOrderForm(newData);
-        
+        formValidHandler(newData);
     }
      
-    const [ toDir, setToDir ] = React.useState<boolean>(false);
 
-    // const dispatch = useDispatch()    /// ??????
 
     const sendForm = () => {
         pross(true);
-        setTimeout(() => { 
-            // pross(false) 
-            setToDir(true);
-            // return <Redirect to='/orderInfo' />
-        }, 4000)
-        console.log(sendOrderForm);
+        sendOrderHandler(sendOrderForm);
     }
-    {if (toDir) return <Redirect to='/orderInfo' />}
+
 
     return (
         <div className='modal-order-form-wrap'  >
@@ -67,6 +92,7 @@ const OrderForm : React.FC <{event: () => void, pross: (a : boolean) => void}> =
                     <span className="modal-form-title">
                             Type your data
                     </span>
+                    { !info && <div style={{color: "red", fontSize: "1rem"}}>Не все поля заполнены!</div> }
                     <form className="order-form" >
                          {/* --------- */}
                          
@@ -89,10 +115,10 @@ const OrderForm : React.FC <{event: () => void, pross: (a : boolean) => void}> =
                         </label>
 
                         <div className='modal-form-submit-wrap '>
-                            <input type="submit" value="SEND" className="send-button-form" onClick= {(e :  React.MouseEvent<HTMLElement>) => {
+                            {formValid &&  <input type="submit" value="SEND" className="send-button-form" onClick= {(e :  React.MouseEvent<HTMLElement>) => {
                                 e.preventDefault();
                                 sendForm()
-                            }} />
+                            }} />}
                         </div>
                             
                     </form>

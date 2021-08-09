@@ -49,8 +49,8 @@ const HeaderNav : React.FC<IProps>  = (props) => {
                     </div>
                     <div className="header-nav-topics-container">
                         {
-                           ( props.topics.length > 0) && props.topics.map((item : string)=>{
-                            return(<div className={"header-nav-topic-list  " + selectedTopicStyleHandler( props.selectedTopic , item)  } onClick={() => {topicRequestHandler(item)}}>
+                           ( props.topics.length > 0) && props.topics.map((item : string, i: number)=>{
+                            return(<div key={item + i} className={"header-nav-topic-list  " + selectedTopicStyleHandler( props.selectedTopic , item)  } onClick={() => {topicRequestHandler(item)}}>
                                     { item }
                             </div>)
                             })

@@ -1,6 +1,7 @@
 import { ProdObj, ProductListType, SliderType } from "../../Types/types"
 
 export const ADD_REMOVE_PRODUCT_IN_CART : string = 'ADD_REMOVE_PRODUCT_IN_CART'
+export const RESET_PRODUCT_IN_CART : string = 'RESET_PRODUCT_IN_CART'
 export const SELECTED_FOR_VIEWING : string = 'SELECTED_FOR_VIEWING'
 export const REMOVE_SELECTED_FOR_VIEWING : string = 'REMOVE_SELECTED_FOR_VIEWING'
 export const GET_PRODUCTS : string = 'GET_PRODUCTS'
@@ -8,6 +9,7 @@ export const GET_SLIDE_LIST : string = 'GET_SLIDE_LIST'
 export const GET_RECOMMENDED_LIST : string = 'GET_RECOMMENDED_LIST'
 export const PROCESSING : string = 'PROCESSING'
 export const SET_TOPIC_LIST : string = 'SET_TOPIC_LIST'
+export const SET_NEW_ORDER_NUMBER : string = 'SET_NEW_ORDER_NUMBER'
 
 export type Adding_Action_Type = {
     type : typeof ADD_REMOVE_PRODUCT_IN_CART, 
@@ -66,4 +68,8 @@ export const getRecommendedListActionCreator = (recommended : void |  ProdObj[])
 export const setTopicList = (list : void |  string[]) : ISetTopicList => ({
     type: SET_TOPIC_LIST,
     payload: list
+})
+export const setNewOrderNumber = (data : any) => ({
+    type: SET_NEW_ORDER_NUMBER,
+    payload: data
 })

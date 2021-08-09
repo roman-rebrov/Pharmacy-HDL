@@ -7,7 +7,7 @@ app.use(express.urlencoded({ extended : true }))
 app.use(express.static('public'))
 app.use(express.json({ limit : '1mb' }))
 app.use(cors({
-    origin : 'http://127.0.0.1:5500'
+    // origin : 'http://127.0.0.1:5500'
 }))
 app.listen(port, () => console.log("http://localhost:" + port));    
 
@@ -60,11 +60,23 @@ function checkUser(){
 };
 function newOrderCreater(data) {     //    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     let newOrderObject = {
-        personal: {},
-        location: {},
-        products: []
+        // personal: {},
+        // location: {},    
+        newOrderNumber: '20045-4581',
+        prodNames: [],
+        totalCost: 0
     }
-    return (newOrderObject)
+    for (let i = 0; i < productList.list.length; i++) {
+        const el = productList.list[i];
+        for (let j = 0; j < data.productsOrder.length; j++) {
+            const el2 = data.productsOrder[j];
+            if(el.id === el2){
+                newOrderObject.prodNames.push(el.name);
+                newOrderObject.totalCost += +el.cost.new;
+            }
+        }
+    }
+    return (newOrderObject);
 };
 
 function topicSelectedHandler(list, topic) {
@@ -115,12 +127,15 @@ function catalogHandler(obj, query){  //
 
 app.post("/newOrder", cors(), (req, res) => {        //    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         let result = newOrderCreater(req.body);
-        res.json(result);
+        // console.log(result);
+        setTimeout(()=>{
+                res.json(result);
+        }, 1000)
 });
 
 app.post("/test", cors(), (req, res) => {
     const data = req.body;
-    console.log(req.body.p);
+    // console.log(req.body.p);
     res.json({
         users : UserBase,
         main : checkUser(),
@@ -131,7 +146,7 @@ app.post("/test", cors(), (req, res) => {
 });
 // -----------------------------------------------------------------
 app.get("/catalog", cors(), (req, res) => {
-    console.log(req.query);
+    // console.log(req.query);
     // console.log(productList.list);
     const result = catalogHandler(productList, req.query);
     setTimeout(() => {
@@ -151,7 +166,7 @@ app.get("/product/:id", cors(), (req, res) => {
     // console.log(req.query);
     setTimeout(() => {
         let productObject = getProductById(req.params.id);
-        console.log(productObject);
+        // console.log(productObject);
 
         res.send(productObject );
     }, 1000)

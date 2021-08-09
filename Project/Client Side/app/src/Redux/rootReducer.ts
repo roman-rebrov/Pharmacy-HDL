@@ -4,6 +4,7 @@ import recommendedListReducer from "./Reducers/recommendedListReducer";
 import sliderReducer from './Reducers/sliderReducer'
 import selectedObjects from './Reducers/selectedObjectsReducer'
 import processReducer from "./Reducers/processReducer";
+import newOrder from "./Reducers/newOrderReducer";
 
 
 export const rootReducer  = combineReducers({
@@ -11,6 +12,7 @@ export const rootReducer  = combineReducers({
     slider : sliderReducer,
     recommendedList: recommendedListReducer,
     selectedObjects,
-    process: processReducer
+    process: processReducer,
+    newOrder: newOrder
 });
 
